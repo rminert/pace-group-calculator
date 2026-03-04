@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rep Calculator · Tuesday Night Workouts</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181b24;
+    --card: #1e2230;
+    --border: #2a2f42;
+    --accent: #f0a500;
+    --text: #e8eaf0;
+    --muted: #7a7f96;
+    --green: #3ecf8e;
+    --red: #e05c2a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .header { text-align: center; margin-bottom: 2.5rem; }
+
+  .header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; }
+
+  .container { max-width: 940px; margin: 0 auto; }
+
+  .section-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-header::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* ── Setup ── */
+  .setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+  }
+
+  .field {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+  }
+
+  .field label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .field input, .field select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .field input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .field select option { background: var(--card); }
+  .field .unit { color: var(--muted); font-size: 1rem; font-weight: 400; margin-left: 4px; }
+  .field-inline { display: flex; align-items: baseline; gap: 0.25rem; }
+
+  /* ── Recovery card ── */
+  .recovery-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    grid-column: span 2;
+  }
+
+  .recovery-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .recovery-top label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .toggle-group {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 5px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .toggle-btn.active { background: var(--accent); color: #000; }
+
+  .rec-inputs { display: flex; align-items: baseline; gap: 0.35rem; flex-wrap: wrap; }
+
+  .rec-inputs input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    width: 70px;
+  }
+  .rec-inputs input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .rec-inputs select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .rec-inputs select option { background: var(--card); }
+  .rec-inputs .unit { color: var(--muted); font-size: 1rem; }
+
+  .rec-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+
+  /* ── Pace Groups ── */
+  .pace-groups { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
+
+  .pace-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1.3fr 1.3fr 1.2fr auto;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .pace-row.anchor { border-color: var(--accent); }
+  .pace-row:focus-within { border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+
+  .pc {
+    padding: 0.85rem 1rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pc:last-child { border-right: none; }
+
+  .pc label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    white-space: nowrap;
+  }
+
+  .pc input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+  .pc input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .pc input.reps-anchor { font-size: 1.4rem; color: var(--accent); width: 70px; }
+
+  .pc.namecell { flex-direction: row; align-items: center; }
+  .cdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-right:8px; }
+  .namecell .inner { display:flex; flex-direction:column; }
+
+  .anchor-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-top: 4px;
+    width: fit-content;
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0 1rem;
+    font-size: 1rem;
+    transition: color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .remove-btn:hover { color: var(--red); }
+  .remove-btn:disabled { opacity: 0.2; cursor: default; }
+
+  .groups-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    margin-top: -0.25rem;
+  }
+  .groups-note strong { color: var(--accent); }
+
+  .add-btn {
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 100%;
+    padding: 0.75rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+  }
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .calc-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2.5rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-bottom: 2rem;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .calc-btn:hover { background: #ffc13d; }
+  .calc-btn:active { transform: scale(0.99); }
+
+  /* ── Results ── */
+  #results { display: none; }
+
+  .summary-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .si { display:flex; flex-direction:column; gap:0.15rem; }
+  .si .sl { font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
+  .si .sv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.1rem; color:var(--text); }
+
+  .result-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .result-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .rct {
+    padding: 0.9rem 1.1rem 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .rct .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .rct .gname { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .rct .plabel { margin-left:auto; font-size:0.72rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-weight:600; text-align:right; line-height:1.3; }
+
+  .rcb {
+    padding: 0.9rem 1.1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .stat { display:flex; flex-direction:column; gap:0.1rem; }
+  .stat .sl { font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
+  .stat .sv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
+  .stat .sv.big { font-size:2.2rem; color:var(--accent); line-height:1; }
+  .stat .sv.grn { color:var(--green); }
+  .stat .sub { font-size:0.68rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; margin-top:1px; }
+
+  .warn {
+    background: rgba(224,92,42,0.1);
+    border-top: 1px solid rgba(224,92,42,0.3);
+    padding: 0.45rem 1.1rem;
+    font-size:0.76rem;
+    color:#f4a070;
+  }
+
+  .print-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.7rem 1.5rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .print-btn:hover { border-color: var(--muted); color: var(--text); }
+
+  @media (max-width: 580px) {
+    .pace-row { grid-template-columns: 1fr 1fr; }
+    .pc { border-right: none !important; border-bottom: 1px solid var(--border); }
+    .pc:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+    .recovery-card { grid-column: span 1; }
+  }
+
+  @media print {
+    body { background:white; color:black; padding:1rem; }
+    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group { display:none; }
+    .field,.pace-row,.result-card,.summary-bar,.recovery-card { background:white !important; border-color:#ccc !important; }
+    .sv, .gname, .sl, .section-header, .header h1, .header p { color:black !important; }
+    .sv.big { color:#c07000 !important; }
+    .sv.grn { color:#006040 !important; }
+    .plabel,.rec-note,.groups-note,.muted { color:#555 !important; }
+    #results { display:block !important; }
+    .anchor-badge { background:#c07000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Tuesday Night <span>Rep Calculator</span></h1>
+    <p>Set Group A's reps — all other groups scale to finish in the same window.</p>
+  </div>
+
+  <div class="section-header">Workout Setup</div>
+  <div class="setup-grid">
+    <div class="field">
+      <label>Workout Window</label>
+      <div class="field-inline">
+        <input type="number" id="workoutMin" value="45" min="10" max="120" style="width:60px">
+        <span class="unit">min</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Warmup / Cooldown</label>
+      <div class="field-inline">
+        <input type="number" id="warmup" value="10" min="0" max="30" style="width:60px">
+        <span class="unit">min</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Rep Distance</label>
+      <div class="field-inline">
+        <input type="number" id="repDist" value="400" min="50" step="50" style="width:80px">
+        <select id="distUnit">
+          <option value="m">m</option>
+          <option value="mi">mi</option>
+          <option value="km">km</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="recovery-card">
+      <div class="recovery-top">
+        <label>Recovery Between Reps</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="btnTime" onclick="setRecMode('time')">⏱ Time</button>
+          <button class="toggle-btn" id="btnDist" onclick="setRecMode('dist')">📏 Distance</button>
+        </div>
+      </div>
+
+      <div id="recTimeUI" class="rec-inputs">
+        <input type="number" id="recMin" value="2" min="0" max="15" style="width:55px">
+        <span class="unit">:</span>
+        <input type="number" id="recSec" value="0" min="0" max="59" style="width:48px">
+        <span class="unit">min : sec</span>
+      </div>
+
+      <div id="recDistUI" class="rec-inputs" style="display:none">
+        <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
+        <select id="recDistUnit">
+          <option value="m">m</option>
+          <option value="mi">mi</option>
+          <option value="km">km</option>
+        </select>
+        <span class="unit">easy jog</span>
+      </div>
+      <p class="rec-note" id="recDistNote" style="display:none">Recovery time is calculated per group based on their pace — slower groups get more time.</p>
+    </div>
+  </div>
+
+  <div class="section-header">Pace Groups</div>
+  <p class="groups-note">The <strong>first group</strong> is your anchor — enter its reps. All other groups are calculated to match its finish time.</p>
+  <div class="pace-groups" id="paceGroups"></div>
+  <button class="add-btn" onclick="addGroup()">+ Add Pace Group</button>
+
+  <button class="calc-btn" onclick="calculate()">Calculate Reps →</button>
+
+  <div id="results">
+    <div class="section-header">Results</div>
+    <div class="summary-bar" id="summaryBar"></div>
+    <div class="result-cards" id="resultCards"></div>
+    <button class="print-btn" onclick="window.print()">🖨 Print Coaching Sheet</button>
+  </div>
+</div>
+
+<script>
+const COLORS = ['#f0a500','#3ecf8e','#5b8af5','#e05c2a','#b06cf5','#3bbfcf','#f05a7e','#e8d060'];
+
+let recMode = 'time';
+
+const defaultGroups = [
+  { name: 'Group A', fastPace: '6:00', slowPace: '7:59',  anchorReps: 8  },
+  { name: 'Group B', fastPace: '8:00', slowPace: '9:59',  anchorReps: null },
+  { name: 'Group C', fastPace: '10:00', slowPace: '11:59', anchorReps: null },
+  { name: 'Group D', fastPace: '12:00', slowPace: '',      anchorReps: null },
+];
+
+let groups = defaultGroups.map((g, i) => ({ ...g, id: i, color: COLORS[i] }));
+let nextId = groups.length;
+
+function setRecMode(mode) {
+  recMode = mode;
+  document.getElementById('btnTime').classList.toggle('active', mode === 'time');
+  document.getElementById('btnDist').classList.toggle('active', mode === 'dist');
+  document.getElementById('recTimeUI').style.display = mode === 'time' ? 'flex' : 'none';
+  document.getElementById('recDistUI').style.display = mode === 'dist' ? 'flex' : 'none';
+  document.getElementById('recDistNote').style.display = mode === 'dist' ? 'block' : 'none';
+}
+
+function renderGroups() {
+  const c = document.getElementById('paceGroups');
+  c.innerHTML = '';
+  groups.forEach((g, idx) => {
+    const isAnchor = idx === 0;
+    const row = document.createElement('div');
+    row.className = 'pace-row' + (isAnchor ? ' anchor' : '');
+    row.innerHTML = `
+      <div class="pc namecell">
+        <span class="cdot" style="background:${g.color}"></span>
+        <div class="inner">
+          <label>Group Name</label>
+          <input type="text" value="${g.name}" oninput="upd(${g.id},'name',this.value)">
+          ${isAnchor ? '<span class="anchor-badge">Anchor</span>' : ''}
+        </div>
+      </div>
+      <div class="pc">
+        <label>Fastest Pace (/mi)</label>
+        <input type="text" value="${g.fastPace}" oninput="upd(${g.id},'fastPace',this.value)" placeholder="6:00">
+      </div>
+      <div class="pc">
+        <label>Slowest Pace (/mi)</label>
+        <input type="text" value="${g.slowPace}" oninput="upd(${g.id},'slowPace',this.value)" placeholder="open-ended">
+      </div>
+      <div class="pc">
+        <label>${isAnchor ? 'Reps (you set)' : 'Reps (auto)'}</label>
+        ${isAnchor
+          ? `<input type="number" class="reps-anchor" value="${g.anchorReps || 8}" min="1" max="40"
+               oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">`
+          : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:var(--muted)">auto</span>`
+        }
+      </div>
+      <button class="remove-btn" onclick="removeGroup(${g.id})" ${groups.length<=1?'disabled':''} title="Remove">✕</button>
+    `;
+    c.appendChild(row);
+  });
+}
+
+function upd(id, key, val) {
+  const g = groups.find(g => g.id === id);
+  if (g) g[key] = val;
+}
+
+function addGroup() {
+  const letter = String.fromCharCode(65 + groups.length);
+  groups.push({ id: nextId, name: `Group ${letter}`, fastPace:'', slowPace:'', anchorReps:null, color: COLORS[nextId % COLORS.length] });
+  nextId++;
+  renderGroups();
+}
+
+function removeGroup(id) {
+  if (groups.length <= 1) return;
+  groups = groups.filter(g => g.id !== id);
+  renderGroups();
+}
+
+function parsePace(str) {
+  if (!str || !str.trim()) return null;
+  const p = str.trim().split(':');
+  if (p.length === 2) {
+    const m = parseInt(p[0]), s = parseInt(p[1]);
+    if (isNaN(m) || isNaN(s)) return null;
+    return m * 60 + s;
+  }
+  const n = parseFloat(str);
+  return isNaN(n) ? null : n * 60;
+}
+
+function toMiles(dist, unit) {
+  if (unit === 'mi') return dist;
+  if (unit === 'km') return dist / 1.60934;
+  return dist / 1609.34;
+}
+
+function repSec(paceSec_mi, dist, unit) {
+  return paceSec_mi * toMiles(dist, unit);
+}
+
+function fmtTime(sec) {
+  if (!isFinite(sec) || sec < 0) return '—';
+  const s = Math.round(sec);
+  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+
+function calculate() {
+  const workoutMin = parseFloat(document.getElementById('workoutMin').value) || 45;
+  const repDist    = parseFloat(document.getElementById('repDist').value) || 400;
+  const distUnit   = document.getElementById('distUnit').value;
+  const warmup     = parseFloat(document.getElementById('warmup').value) || 0;
+  const availSec   = (workoutMin - warmup) * 60;
+
+  // Recovery params
+  let fixedRecSec = null, recDistVal = null, recDistUnit = null;
+  if (recMode === 'time') {
+    fixedRecSec = (parseInt(document.getElementById('recMin').value)||0) * 60
+                + (parseInt(document.getElementById('recSec').value)||0);
+  } else {
+    recDistVal  = parseFloat(document.getElementById('recDist').value) || 200;
+    recDistUnit = document.getElementById('recDistUnit').value;
+  }
+
+  // ── Anchor (group 0) ──
+  const anchor = groups[0];
+  const anchorReps = anchor.anchorReps || 8;
+  const aFast = parsePace(anchor.fastPace);
+  const aSlow = parsePace(anchor.slowPace);
+  let anchorPace;
+  if (aFast && aSlow) anchorPace = (aFast + aSlow) / 2;
+  else anchorPace = aFast || aSlow || 420; // fallback 7:00/mi
+
+  const anchorRepSec = repSec(anchorPace, repDist, distUnit);
+  const anchorRecPace = anchorPace + 120; // recovery jog = interval pace + 2:00/mi
+  const anchorRecSec = fixedRecSec !== null
+    ? fixedRecSec
+    : repSec(anchorRecPace, recDistVal, recDistUnit);
+
+  // Time anchor occupies: reps*rep + (reps-1)*rec
+  const anchorTotalSec = anchorReps * anchorRepSec + (anchorReps - 1) * anchorRecSec;
+
+  // ── All groups ──
+  const results = [];
+  groups.forEach((g, idx) => {
+    const gFast = parsePace(g.fastPace);
+    const gSlow = parsePace(g.slowPace);
+    let avgPace;
+    if (gFast && gSlow) avgPace = (gFast + gSlow) / 2;
+    else if (gFast && !gSlow) avgPace = gFast * 1.08; // open-ended slow: assume ~8% slower than stated fast
+    else if (!gFast && gSlow) avgPace = gSlow * 0.95;
+    else { results.push({ ...g, error: true, idx }); return; }
+
+    const gRepSec = repSec(avgPace, repDist, distUnit);
+    const gRecPace = avgPace + 120; // recovery jog = interval pace + 2:00/mi
+    const gRecSec = fixedRecSec !== null
+      ? fixedRecSec
+      : repSec(gRecPace, recDistVal, recDistUnit);
+
+    let reps;
+    if (idx === 0) {
+      reps = anchorReps;
+    } else {
+      // reps*(gRepSec+gRecSec) - gRecSec = anchorTotalSec
+      reps = Math.max(1, Math.floor((anchorTotalSec + gRecSec) / (gRepSec + gRecSec)));
+    }
+
+    const totalSec = reps * gRepSec + (reps - 1) * gRecSec;
+    const diff = totalSec - anchorTotalSec;
+
+    results.push({ ...g, avgPace, gFast, gSlow, gRepSec, gRecSec, reps, totalSec, diff, idx });
+  });
+
+  const valid = results.filter(r => !r.error);
+  if (!valid.length) return;
+
+  // ── Summary ──
+  const recLabel = fixedRecSec !== null
+    ? fmtTime(fixedRecSec)
+    : `${recDistVal}${recDistUnit} jog`;
+
+  document.getElementById('summaryBar').innerHTML = `
+    <div class="si"><div class="sl">Rep Distance</div><div class="sv">${repDist}${distUnit}</div></div>
+    <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
+    <div class="si"><div class="sl">Available Time</div><div class="sv">${workoutMin - warmup} min</div></div>
+    <div class="si"><div class="sl">Warmup / CD</div><div class="sv">${warmup} min</div></div>
+    <div class="si"><div class="sl">Anchor Reps</div><div class="sv">${anchorReps} × ${groups[0].name}</div></div>
+    <div class="si"><div class="sl">Rep Range</div><div class="sv">${Math.min(...valid.map(r=>r.reps))}–${Math.max(...valid.map(r=>r.reps))}</div></div>
+  `;
+
+  // ── Cards ──
+  const cards = document.getElementById('resultCards');
+  cards.innerHTML = '';
+
+  valid.forEach(r => {
+    const paceLabel = r.gFast && r.gSlow
+      ? `${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`
+      : r.gFast ? `sub ${fmtTime(r.gSlow || r.gFast)}/mi`
+      : `${fmtTime(r.avgPace)}/mi`;
+
+    const recDisplay = fixedRecSec !== null
+      ? fmtTime(r.gRecSec)
+      : `${recDistVal}${recDistUnit}`;
+
+    const recSub = fixedRecSec === null
+      ? `<div class="sub">≈ ${fmtTime(r.gRecSec)} @ ${fmtTime(r.avgPace + 120)}/mi</div>`
+      : '';
+
+    const diffAbs = Math.abs(r.diff);
+    const warnHtml = diffAbs > 60 && r.idx !== 0
+      ? `<div class="warn">Finishes ~${fmtTime(diffAbs)} ${r.diff > 0 ? 'after' : 'before'} anchor</div>`
+      : '';
+
+    const openNote = r.gFast && !r.gSlow && r.idx !== 0
+      ? `<div class="warn" style="background:rgba(240,165,0,0.07);border-top-color:rgba(240,165,0,0.3);color:#f0c060;">Open-ended pace — avg estimated at ${fmtTime(r.avgPace)}/mi</div>`
+      : '';
+
+    const card = document.createElement('div');
+    card.className = 'result-card';
+    card.innerHTML = `
+      <div class="rct">
+        <div class="dot" style="background:${r.color}"></div>
+        <div class="gname">${r.name}</div>
+        <div class="plabel">${paceLabel}</div>
+      </div>
+      <div class="rcb">
+        <div class="stat">
+          <div class="sl">Reps</div>
+          <div class="sv big">${r.reps}</div>
+        </div>
+        <div class="stat">
+          <div class="sl">Rep Time</div>
+          <div class="sv">${fmtTime(r.gRepSec)}</div>
+        </div>
+        <div class="stat">
+          <div class="sl">Recovery</div>
+          <div class="sv">${recDisplay}</div>
+          ${recSub}
+        </div>
+        <div class="stat">
+          <div class="sl">Total Time</div>
+          <div class="sv grn">${fmtTime(r.totalSec)}</div>
+        </div>
+      </div>
+      ${openNote}${warnHtml}
+    `;
+    cards.appendChild(card);
+  });
+
+  const el = document.getElementById('results');
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+renderGroups();
+</script>
+</body>
+</html>
