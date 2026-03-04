@@ -361,6 +361,11 @@
   .stat .sv.big { font-size:2.2rem; color:var(--accent); line-height:1; }
   .stat .sv.grn { color:var(--green); }
   .stat .sub { font-size:0.68rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; margin-top:1px; }
+  .cycle-stat { grid-column: span 2; }
+  .cycle-row { display:flex; align-items:baseline; gap:0.3rem; flex-wrap:wrap; margin-top:0.1rem; }
+  .cv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
+  .ceq { color:var(--accent); font-size:1.3rem; }
+  .cplus { font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.95rem; color:var(--muted); }
 
   .warn {
     background: rgba(224,92,42,0.1);
@@ -692,8 +697,8 @@ function calculate() {
       : `${recDistVal}${recDistUnit}`;
 
     const recSub = fixedRecSec === null
-      ? `<div class="sub">≈ ${fmtTime(r.gRecSec)} @ ${fmtTime(r.avgPace + 120)}/mi</div>`
-      : '';
+      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace + 120)}/mi</div>`
+      : `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
 
     const diffAbs = Math.abs(r.diff);
     const warnHtml = diffAbs > 60 && r.idx !== 0
@@ -717,17 +722,19 @@ function calculate() {
           <div class="sl">Reps</div>
           <div class="sv big">${r.reps}</div>
         </div>
-        <div class="stat">
-          <div class="sl">Rep Time</div>
-          <div class="sv">${fmtTime(r.gRepSec)}</div>
-        </div>
-        <div class="stat">
-          <div class="sl">Recovery</div>
-          <div class="sv">${recDisplay}</div>
+        <div class="stat cycle-stat">
+          <div class="sl">Cycle (rep + recovery)</div>
+          <div class="cycle-row">
+            <span class="cv">${fmtTime(r.gRepSec)}</span>
+            <span class="cplus">+</span>
+            <span class="cv">${fmtTime(r.gRecSec)}</span>
+            <span class="cplus">=</span>
+            <span class="cv ceq">${fmtTime(r.gRepSec + r.gRecSec)}</span>
+          </div>
           ${recSub}
         </div>
-        <div class="stat">
-          <div class="sl">Total Time</div>
+        <div class="stat" style="grid-column:span 2; border-top:1px solid var(--border); padding-top:0.6rem; margin-top:0.1rem;">
+          <div class="sl">Total Workout Time</div>
           <div class="sv grn">${fmtTime(r.totalSec)}</div>
         </div>
       </div>
