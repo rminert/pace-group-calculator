@@ -155,6 +155,29 @@
   .rec-inputs select option { background: var(--card); }
   .rec-inputs .unit { color: var(--muted); font-size: 1rem; }
   .rec-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+  .pace-offset-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-top: 0.65rem; flex-wrap: wrap;
+  }
+  .pace-offset-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    white-space: nowrap;
+  }
+  .pace-offset-ctrl {
+    display: flex; align-items: center; gap: 0;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  }
+  .offset-btn {
+    background: transparent; border: none; color: var(--muted); cursor: pointer;
+    padding: 4px 12px; font-size: 1rem; font-weight: 700; transition: all 0.15s; line-height: 1;
+  }
+  .offset-btn:hover { background: var(--border); color: var(--text); }
+  .offset-display {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+    color: var(--accent); padding: 4px 10px; white-space: nowrap;
+    border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+  }
 
   /* ── Pace Groups ── */
   .pace-groups { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
@@ -388,16 +411,24 @@
         <input type="number" id="recSec" value="0" min="0" max="59" style="width:48px">
         <span class="unit">min : sec</span>
       </div>
-      <div id="recDistUI" class="rec-inputs" style="display:none">
-        <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
-        <select id="recDistUnit">
-          <option value="m">m</option>
-          <option value="mi">mi</option>
-          <option value="km">km</option>
-        </select>
-        <span class="unit">easy jog</span>
+      <div id="recDistUI" style="display:none">
+        <div class="rec-inputs">
+          <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
+          <select id="recDistUnit">
+            <option value="m">m</option>
+            <option value="mi">mi</option>
+            <option value="km">km</option>
+          </select>
+        </div>
+        <div class="pace-offset-row">
+          <span class="pace-offset-label">Recovery pace</span>
+          <div class="pace-offset-ctrl">
+            <button class="offset-btn" onclick="changeOffset(-30)">−</button>
+            <span class="offset-display" id="offsetDisplay">interval + 2:00/mi</span>
+            <button class="offset-btn" onclick="changeOffset(+30)">+</button>
+          </div>
+        </div>
       </div>
-      <p class="rec-note" id="recDistNote" style="display:none">Recovery pace = interval pace + 2:00/mi. Slower groups get proportionally more recovery time.</p>
     </div>
   </div>
 
@@ -430,13 +461,26 @@ const defaultGroups = [
 let groups = defaultGroups.map((g, i) => ({ ...g, id: i, color: COLORS[i] }));
 let nextId = groups.length;
 
+let recPaceOffsetSec = 120; // default +2:00/mi
+
+function changeOffset(deltaSec) {
+  // clamp between 0 (same pace) and 8:00/mi slower
+  recPaceOffsetSec = Math.max(0, Math.min(480, recPaceOffsetSec + deltaSec));
+  const m = Math.floor(recPaceOffsetSec / 60);
+  const s = recPaceOffsetSec % 60;
+  const label = recPaceOffsetSec === 0
+    ? 'interval pace'
+    : `interval + ${m}:${String(s).padStart(2,'0')}/mi`;
+  document.getElementById('offsetDisplay').textContent = label;
+}
+
 function setRecMode(mode) {
   recMode = mode;
   document.getElementById('btnTime').classList.toggle('active', mode === 'time');
   document.getElementById('btnDist').classList.toggle('active', mode === 'dist');
   document.getElementById('recTimeUI').style.display = mode === 'time' ? 'flex' : 'none';
   document.getElementById('recDistUI').style.display = mode === 'dist' ? 'flex' : 'none';
-  document.getElementById('recDistNote').style.display = mode === 'dist' ? 'block' : 'none';
+
 }
 
 // Format seconds as MM:SS pace string
@@ -607,7 +651,7 @@ function calculate() {
   const anchorRepSec = repSec(anchorPace, repDist, distUnit);
   const anchorRecSec = fixedRecSec !== null
     ? fixedRecSec
-    : repSec(anchorPace + 120, recDistVal, recDistUnit);
+    : repSec(anchorPace + recPaceOffsetSec, recDistVal, recDistUnit);
   const anchorTotalSec = anchorReps * anchorRepSec + (anchorReps - 1) * anchorRecSec;
 
   // ── All groups ──
@@ -624,7 +668,7 @@ function calculate() {
     const gRepSec = repSec(avgPace, repDist, distUnit);
     const gRecSec = fixedRecSec !== null
       ? fixedRecSec
-      : repSec(avgPace + 120, recDistVal, recDistUnit);
+      : repSec(avgPace + recPaceOffsetSec, recDistVal, recDistUnit);
 
     // Determine reps: anchor uses anchorReps, others auto-calc unless overridden
     let autoReps, reps, isOverridden = false;
@@ -672,7 +716,7 @@ function calculate() {
       : r.gFast ? `${fmtTime(r.gFast)}+/mi` : `${fmtTime(r.avgPace)}/mi`;
 
     const recSub = fixedRecSec === null
-      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace + 120)}/mi</div>`
+      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace + recPaceOffsetSec)}/mi</div>`
       : `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
 
     // Delta vs anchor
