@@ -29,7 +29,6 @@
   }
 
   .header { text-align: center; margin-bottom: 2.5rem; }
-
   .header h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
@@ -39,7 +38,6 @@
     line-height: 1;
     color: var(--text);
   }
-
   .header h1 span { color: var(--accent); }
   .header p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; }
 
@@ -62,7 +60,7 @@
   /* ── Setup ── */
   .setup-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1.5rem;
     align-items: start;
@@ -74,7 +72,6 @@
     border-radius: 10px;
     padding: 1rem 1.2rem;
   }
-
   .field label {
     display: block;
     font-family: 'Barlow Condensed', sans-serif;
@@ -85,7 +82,6 @@
     color: var(--muted);
     margin-bottom: 0.5rem;
   }
-
   .field input, .field select {
     background: transparent;
     border: none;
@@ -96,7 +92,6 @@
     font-size: 1.6rem;
     line-height: 1;
   }
-
   .field input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
   .field select option { background: var(--card); }
   .field .unit { color: var(--muted); font-size: 1rem; font-weight: 400; margin-left: 4px; }
@@ -110,14 +105,12 @@
     padding: 1rem 1.2rem;
     grid-column: span 2;
   }
-
   .recovery-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.75rem;
   }
-
   .recovery-top label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
@@ -126,7 +119,6 @@
     text-transform: uppercase;
     color: var(--muted);
   }
-
   .toggle-group {
     display: flex;
     background: var(--surface);
@@ -134,7 +126,6 @@
     border-radius: 6px;
     overflow: hidden;
   }
-
   .toggle-btn {
     background: transparent;
     border: none;
@@ -149,33 +140,20 @@
     transition: all 0.15s;
   }
   .toggle-btn.active { background: var(--accent); color: #000; }
-
   .rec-inputs { display: flex; align-items: baseline; gap: 0.35rem; flex-wrap: wrap; }
-
   .rec-inputs input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.6rem;
-    width: 70px;
+    background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.6rem; width: 70px;
   }
   .rec-inputs input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
   .rec-inputs select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    cursor: pointer;
+    background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.4rem; cursor: pointer;
   }
   .rec-inputs select option { background: var(--card); }
   .rec-inputs .unit { color: var(--muted); font-size: 1rem; }
-
   .rec-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
 
   /* ── Pace Groups ── */
@@ -186,7 +164,7 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 2fr 1.3fr 1.3fr 1.2fr auto;
+    grid-template-columns: 2fr 1.3fr 1.3fr 1.3fr auto;
     overflow: hidden;
     transition: border-color 0.2s;
   }
@@ -201,30 +179,29 @@
     justify-content: center;
   }
   .pc:last-child { border-right: none; }
-
   .pc label {
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.25rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    white-space: nowrap;
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
+    font-family: 'Barlow Condensed', sans-serif; white-space: nowrap;
   }
-
   .pc input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    width: 100%;
+    background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.1rem; width: 100%;
   }
   .pc input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .pc input.reps-anchor { font-size: 1.4rem; color: var(--accent); width: 70px; }
+  .pc input.reps-input { font-size: 1.4rem; color: var(--accent); width: 70px; }
+  .pc input.reps-input.overridden { color: var(--green); }
+  .pc input.reps-input.is-auto { color: var(--muted); }
+
+  .pc .reps-hint {
+    font-size: 0.62rem; color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-top: 2px;
+  }
+  .pc .reps-hint .clear-link {
+    color: var(--accent); cursor: pointer; text-decoration: underline;
+  }
 
   .pc.namecell { flex-direction: row; align-items: center; }
   .cdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-right:8px; }
@@ -232,75 +209,37 @@
 
   .anchor-badge {
     display: inline-block;
-    background: var(--accent);
-    color: #000;
+    background: var(--accent); color: #000;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.58rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin-top: 4px;
-    width: fit-content;
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 5px; border-radius: 3px; margin-top: 4px; width: fit-content;
   }
 
   .remove-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0 1rem;
-    font-size: 1rem;
-    transition: color 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    padding: 0 1rem; font-size: 1rem; transition: color 0.15s;
+    display: flex; align-items: center; justify-content: center;
   }
   .remove-btn:hover { color: var(--red); }
   .remove-btn:disabled { opacity: 0.2; cursor: default; }
 
-  .groups-note {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    margin-top: -0.25rem;
-  }
+  .groups-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; margin-top: -0.25rem; }
   .groups-note strong { color: var(--accent); }
 
   .add-btn {
-    background: transparent;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    color: var(--muted);
-    cursor: pointer;
-    width: 100%;
-    padding: 0.75rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    margin-bottom: 1.5rem;
+    background: transparent; border: 1px dashed var(--border); border-radius: 10px;
+    color: var(--muted); cursor: pointer; width: 100%; padding: 0.75rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; margin-bottom: 1.5rem;
   }
   .add-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   .calc-btn {
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    padding: 1rem 2.5rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-bottom: 2rem;
+    background: var(--accent); color: #000; border: none; border-radius: 10px;
+    padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; display: block; width: 100%; margin-bottom: 2rem;
     transition: background 0.2s, transform 0.1s;
   }
   .calc-btn:hover { background: #ffc13d; }
@@ -310,14 +249,8 @@
   #results { display: none; }
 
   .summary-bar {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.5rem; display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;
   }
   .si { display:flex; flex-direction:column; gap:0.15rem; }
   .si .sl { font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
@@ -326,86 +259,94 @@
   .result-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1rem; margin-bottom: 1.5rem;
   }
 
-  .result-card {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card);
-  }
+  .result-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
+  .result-card.overridden-card { border-color: var(--green); }
 
   .rct {
-    padding: 0.9rem 1.1rem 0.7rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 1.1rem 0.7rem; display: flex; align-items: center;
+    gap: 0.6rem; border-bottom: 1px solid var(--border);
   }
   .rct .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
   .rct .gname { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.04em; }
   .rct .plabel { margin-left:auto; font-size:0.72rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-weight:600; text-align:right; line-height:1.3; }
 
-  .rcb {
-    padding: 0.9rem 1.1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
-  }
+  .rcb { padding: 0.9rem 1.1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
 
   .stat { display:flex; flex-direction:column; gap:0.1rem; }
   .stat .sl { font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
   .stat .sv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
   .stat .sv.big { font-size:2.2rem; color:var(--accent); line-height:1; }
+  .stat .sv.big.overridden { color:var(--green); }
   .stat .sv.grn { color:var(--green); }
   .stat .sub { font-size:0.68rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; margin-top:1px; }
+
   .cycle-stat { grid-column: span 2; }
   .cycle-row { display:flex; align-items:baseline; gap:0.3rem; flex-wrap:wrap; margin-top:0.1rem; }
   .cv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
   .ceq { color:var(--accent); font-size:1.3rem; }
   .cplus { font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.95rem; color:var(--muted); }
 
+  /* ── Reps toggle ── */
+  .reps-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+    margin-bottom: 0.4rem;
+  }
+  .reps-toggle-btn {
+    background: transparent; border: none; color: var(--muted); cursor: pointer;
+    padding: 3px 10px; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: all 0.15s; line-height: 1.4;
+  }
+  .reps-toggle-btn.active-auto { background: var(--surface); color: var(--muted); }
+  .reps-toggle-btn.on { background: var(--green); color: #000; }
+
+  .delta-row {
+    padding: 0.4rem 1.1rem; border-top: 1px solid var(--border);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .delta-row.over { color: var(--red); }
+  .delta-row.under { color: var(--green); }
+  .delta-row.even { color: var(--muted); }
+
   .warn {
-    background: rgba(224,92,42,0.1);
+    padding: 0.45rem 1.1rem; font-size:0.76rem; color:#f4a070;
     border-top: 1px solid rgba(224,92,42,0.3);
-    padding: 0.45rem 1.1rem;
-    font-size:0.76rem;
-    color:#f4a070;
+    background: rgba(224,92,42,0.07);
   }
 
   .print-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0.7rem 1.5rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
+    background: transparent; border: 1px solid var(--border); border-radius: 10px;
+    color: var(--muted); cursor: pointer; padding: 0.7rem 1.5rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s;
   }
   .print-btn:hover { border-color: var(--muted); color: var(--text); }
 
   @media (max-width: 580px) {
+    .setup-grid { grid-template-columns: 1fr; }
+    .recovery-card { grid-column: span 1; }
     .pace-row { grid-template-columns: 1fr 1fr; }
     .pc { border-right: none !important; border-bottom: 1px solid var(--border); }
     .pc:nth-child(odd) { border-right: 1px solid var(--border) !important; }
-    .recovery-card { grid-column: span 1; }
   }
 
   @media print {
     body { background:white; color:black; padding:1rem; }
-    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group { display:none; }
+    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group,.reps-hint { display:none; }
     .field,.pace-row,.result-card,.summary-bar,.recovery-card { background:white !important; border-color:#ccc !important; }
-    .sv, .gname, .sl, .section-header, .header h1, .header p { color:black !important; }
+    .sv,.gname,.sl,.section-header,.header h1,.header p { color:black !important; }
     .sv.big { color:#c07000 !important; }
     .sv.grn { color:#006040 !important; }
-    .plabel,.rec-note,.groups-note,.muted { color:#555 !important; }
+    .plabel,.rec-note,.groups-note { color:#555 !important; }
     #results { display:block !important; }
     .anchor-badge { background:#c07000 !important; }
   }
@@ -421,20 +362,6 @@
 
   <div class="section-header">Workout Setup</div>
   <div class="setup-grid">
-    <div class="field">
-      <label>Workout Window</label>
-      <div class="field-inline">
-        <input type="number" id="workoutMin" value="45" min="10" max="120" style="width:60px">
-        <span class="unit">min</span>
-      </div>
-    </div>
-    <div class="field">
-      <label>Warmup / Cooldown</label>
-      <div class="field-inline">
-        <input type="number" id="warmup" value="10" min="0" max="30" style="width:60px">
-        <span class="unit">min</span>
-      </div>
-    </div>
     <div class="field">
       <label>Rep Distance</label>
       <div class="field-inline">
@@ -455,14 +382,12 @@
           <button class="toggle-btn" id="btnDist" onclick="setRecMode('dist')">📏 Distance</button>
         </div>
       </div>
-
       <div id="recTimeUI" class="rec-inputs">
         <input type="number" id="recMin" value="2" min="0" max="15" style="width:55px">
         <span class="unit">:</span>
         <input type="number" id="recSec" value="0" min="0" max="59" style="width:48px">
         <span class="unit">min : sec</span>
       </div>
-
       <div id="recDistUI" class="rec-inputs" style="display:none">
         <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
         <select id="recDistUnit">
@@ -472,12 +397,12 @@
         </select>
         <span class="unit">easy jog</span>
       </div>
-      <p class="rec-note" id="recDistNote" style="display:none">Recovery time is calculated per group based on their pace — slower groups get more time.</p>
+      <p class="rec-note" id="recDistNote" style="display:none">Recovery pace = interval pace + 2:00/mi. Slower groups get proportionally more recovery time.</p>
     </div>
   </div>
 
   <div class="section-header">Pace Groups</div>
-  <p class="groups-note">The <strong>first group</strong> is your anchor — enter its reps. All other groups are calculated to match its finish time.</p>
+  <p class="groups-note">The <strong>first group</strong> is your anchor — set its reps. Others calculate automatically, but you can type a number to override and see the time impact.</p>
   <div class="pace-groups" id="paceGroups"></div>
   <button class="add-btn" onclick="addGroup()">+ Add Pace Group</button>
 
@@ -493,14 +418,13 @@
 
 <script>
 const COLORS = ['#f0a500','#3ecf8e','#5b8af5','#e05c2a','#b06cf5','#3bbfcf','#f05a7e','#e8d060'];
-
 let recMode = 'time';
 
 const defaultGroups = [
-  { name: 'Group A', fastPace: '6:00', slowPace: '7:59',  anchorReps: 8  },
-  { name: 'Group B', fastPace: '8:00', slowPace: '9:59',  anchorReps: null },
-  { name: 'Group C', fastPace: '10:00', slowPace: '11:59', anchorReps: null },
-  { name: 'Group D', fastPace: '12:00', slowPace: '',      anchorReps: null },
+  { name: 'Group A', fastPace: '6:00', slowPace: '7:59', anchorReps: 8, overrideReps: null },
+  { name: 'Group B', fastPace: '8:00', slowPace: '9:59', anchorReps: null, overrideReps: null },
+  { name: 'Group C', fastPace: '10:00', slowPace: '11:59', anchorReps: null, overrideReps: null },
+  { name: 'Group D', fastPace: '12:00', slowPace: '', anchorReps: null, overrideReps: null },
 ];
 
 let groups = defaultGroups.map((g, i) => ({ ...g, id: i, color: COLORS[i] }));
@@ -515,6 +439,36 @@ function setRecMode(mode) {
   document.getElementById('recDistNote').style.display = mode === 'dist' ? 'block' : 'none';
 }
 
+// Format seconds as MM:SS pace string
+function secsToPaceStr(sec) {
+  const s = Math.round(sec);
+  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+
+// Parse "MM:SS" → seconds, or decimal → seconds
+function parsePace(str) {
+  if (!str || !str.trim()) return null;
+  const p = str.trim().split(':');
+  if (p.length === 2) {
+    const m = parseInt(p[0]), s = parseInt(p[1]);
+    if (isNaN(m) || isNaN(s)) return null;
+    return m * 60 + s;
+  }
+  const n = parseFloat(str);
+  return isNaN(n) ? null : n * 60;
+}
+
+// When slowPace of group at idx changes, update only the immediate next group's fastest pace
+function cascadeFromSlowPace(idx) {
+  const next = groups[idx + 1];
+  if (!next) { renderGroups(); return; }
+  const prevSlow = parsePace(groups[idx].slowPace);
+  if (prevSlow !== null) {
+    next.fastPace = secsToPaceStr(prevSlow + 1);
+  }
+  renderGroups();
+}
+
 function renderGroups() {
   const c = document.getElementById('paceGroups');
   c.innerHTML = '';
@@ -522,6 +476,9 @@ function renderGroups() {
     const isAnchor = idx === 0;
     const row = document.createElement('div');
     row.className = 'pace-row' + (isAnchor ? ' anchor' : '');
+
+    const isManual = !isAnchor && g.overrideReps !== null;
+
     row.innerHTML = `
       <div class="pc namecell">
         <span class="cdot" style="background:${g.color}"></span>
@@ -533,19 +490,33 @@ function renderGroups() {
       </div>
       <div class="pc">
         <label>Fastest Pace (/mi)</label>
-        <input type="text" value="${g.fastPace}" oninput="upd(${g.id},'fastPace',this.value)" placeholder="6:00">
+        <input type="text" id="fast-${g.id}" value="${g.fastPace}"
+          oninput="upd(${g.id},'fastPace',this.value)"
+          placeholder="6:00"
+          ${idx > 0 ? 'readonly style="color:var(--muted);cursor:default"' : ''}>
       </div>
       <div class="pc">
         <label>Slowest Pace (/mi)</label>
-        <input type="text" value="${g.slowPace}" oninput="upd(${g.id},'slowPace',this.value)" placeholder="open-ended">
+        <input type="text" value="${g.slowPace}"
+          oninput="upd(${g.id},'slowPace',this.value)" onblur="cascadeFromSlowPace(${idx})"
+          placeholder="open-ended">
       </div>
       <div class="pc">
-        <label>${isAnchor ? 'Reps (you set)' : 'Reps (auto)'}</label>
-        ${isAnchor
-          ? `<input type="number" class="reps-anchor" value="${g.anchorReps || 8}" min="1" max="40"
-               oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">`
-          : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:var(--muted)">auto</span>`
-        }
+        <label>Reps</label>
+        ${isAnchor ? `
+          <input type="number" class="reps-input"
+            value="${g.anchorReps || 8}" min="1" max="40"
+            oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">
+          <div style="font-size:0.6rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:2px;">anchor</div>
+        ` : `
+          <div class="reps-toggle">
+            <button class="reps-toggle-btn ${!isManual ? 'on' : ''}" onclick="clearOverride(${g.id})">Auto</button>
+            <button class="reps-toggle-btn ${isManual ? 'on' : ''}" onclick="setManual(${g.id})">Manual</button>
+          </div>
+          ${isManual ? `<input type="number" class="reps-input overridden"
+            value="${g.overrideReps}" min="1" max="40" style="margin-top:2px;"
+            oninput="updOverride(${g.id},this.value)">` : ''}
+        `}
       </div>
       <button class="remove-btn" onclick="removeGroup(${g.id})" ${groups.length<=1?'disabled':''} title="Remove">✕</button>
     `;
@@ -558,9 +529,35 @@ function upd(id, key, val) {
   if (g) g[key] = val;
 }
 
+function updOverride(id, val) {
+  const g = groups.find(g => g.id === id);
+  if (!g) return;
+  const n = parseInt(val);
+  g.overrideReps = (!val || isNaN(n)) ? null : n;
+}
+
+function clearOverride(id) {
+  const g = groups.find(g => g.id === id);
+  if (g) { g.overrideReps = null; renderGroups(); }
+}
+
+function setManual(id) {
+  const g = groups.find(g => g.id === id);
+  if (!g || g.overrideReps !== null) return;
+  // Seed with the last calculated auto value if available, else a reasonable default
+  g.overrideReps = g._lastAutoReps || 6;
+  renderGroups();
+}
+
 function addGroup() {
   const letter = String.fromCharCode(65 + groups.length);
-  groups.push({ id: nextId, name: `Group ${letter}`, fastPace:'', slowPace:'', anchorReps:null, color: COLORS[nextId % COLORS.length] });
+  // Auto-set fastest pace from previous group's slowest + 1s
+  let fastPace = '';
+  if (groups.length > 0) {
+    const prevSlow = parsePace(groups[groups.length - 1].slowPace);
+    if (prevSlow !== null) fastPace = secsToPaceStr(prevSlow + 1);
+  }
+  groups.push({ id: nextId, name: `Group ${letter}`, fastPace, slowPace: '', anchorReps: null, overrideReps: null, color: COLORS[nextId % COLORS.length] });
   nextId++;
   renderGroups();
 }
@@ -569,18 +566,6 @@ function removeGroup(id) {
   if (groups.length <= 1) return;
   groups = groups.filter(g => g.id !== id);
   renderGroups();
-}
-
-function parsePace(str) {
-  if (!str || !str.trim()) return null;
-  const p = str.trim().split(':');
-  if (p.length === 2) {
-    const m = parseInt(p[0]), s = parseInt(p[1]);
-    if (isNaN(m) || isNaN(s)) return null;
-    return m * 60 + s;
-  }
-  const n = parseFloat(str);
-  return isNaN(n) ? null : n * 60;
 }
 
 function toMiles(dist, unit) {
@@ -600,13 +585,9 @@ function fmtTime(sec) {
 }
 
 function calculate() {
-  const workoutMin = parseFloat(document.getElementById('workoutMin').value) || 45;
-  const repDist    = parseFloat(document.getElementById('repDist').value) || 400;
-  const distUnit   = document.getElementById('distUnit').value;
-  const warmup     = parseFloat(document.getElementById('warmup').value) || 0;
-  const availSec   = (workoutMin - warmup) * 60;
+  const repDist  = parseFloat(document.getElementById('repDist').value) || 400;
+  const distUnit = document.getElementById('distUnit').value;
 
-  // Recovery params
   let fixedRecSec = null, recDistVal = null, recDistUnit = null;
   if (recMode === 'time') {
     fixedRecSec = (parseInt(document.getElementById('recMin').value)||0) * 60
@@ -616,22 +597,17 @@ function calculate() {
     recDistUnit = document.getElementById('recDistUnit').value;
   }
 
-  // ── Anchor (group 0) ──
+  // ── Anchor ──
   const anchor = groups[0];
   const anchorReps = anchor.anchorReps || 8;
   const aFast = parsePace(anchor.fastPace);
   const aSlow = parsePace(anchor.slowPace);
-  let anchorPace;
-  if (aFast && aSlow) anchorPace = (aFast + aSlow) / 2;
-  else anchorPace = aFast || aSlow || 420; // fallback 7:00/mi
+  let anchorPace = (aFast && aSlow) ? (aFast + aSlow) / 2 : (aFast || aSlow || 390);
 
   const anchorRepSec = repSec(anchorPace, repDist, distUnit);
-  const anchorRecPace = anchorPace + 120; // recovery jog = interval pace + 2:00/mi
   const anchorRecSec = fixedRecSec !== null
     ? fixedRecSec
-    : repSec(anchorRecPace, recDistVal, recDistUnit);
-
-  // Time anchor occupies: reps*rep + (reps-1)*rec
+    : repSec(anchorPace + 120, recDistVal, recDistUnit);
   const anchorTotalSec = anchorReps * anchorRepSec + (anchorReps - 1) * anchorRecSec;
 
   // ── All groups ──
@@ -641,44 +617,48 @@ function calculate() {
     const gSlow = parsePace(g.slowPace);
     let avgPace;
     if (gFast && gSlow) avgPace = (gFast + gSlow) / 2;
-    else if (gFast && !gSlow) avgPace = gFast * 1.08; // open-ended slow: assume ~8% slower than stated fast
+    else if (gFast && !gSlow) avgPace = gFast * 1.08;
     else if (!gFast && gSlow) avgPace = gSlow * 0.95;
     else { results.push({ ...g, error: true, idx }); return; }
 
     const gRepSec = repSec(avgPace, repDist, distUnit);
-    const gRecPace = avgPace + 120; // recovery jog = interval pace + 2:00/mi
     const gRecSec = fixedRecSec !== null
       ? fixedRecSec
-      : repSec(gRecPace, recDistVal, recDistUnit);
+      : repSec(avgPace + 120, recDistVal, recDistUnit);
 
-    let reps;
+    // Determine reps: anchor uses anchorReps, others auto-calc unless overridden
+    let autoReps, reps, isOverridden = false;
     if (idx === 0) {
       reps = anchorReps;
+      autoReps = anchorReps;
     } else {
-      // reps*(gRepSec+gRecSec) - gRecSec = anchorTotalSec
-      reps = Math.max(1, Math.floor((anchorTotalSec + gRecSec) / (gRepSec + gRecSec)));
+      autoReps = Math.max(1, Math.floor((anchorTotalSec + gRecSec) / (gRepSec + gRecSec)));
+      if (g.overrideReps !== null) {
+        reps = g.overrideReps;
+        isOverridden = true;
+      } else {
+        reps = autoReps;
+      }
     }
 
     const totalSec = reps * gRepSec + (reps - 1) * gRecSec;
     const diff = totalSec - anchorTotalSec;
 
-    results.push({ ...g, avgPace, gFast, gSlow, gRepSec, gRecSec, reps, totalSec, diff, idx });
+    g._lastAutoReps = autoReps;
+    results.push({ ...g, avgPace, gFast, gSlow, gRepSec, gRecSec, reps, autoReps, totalSec, diff, idx, isOverridden });
   });
 
   const valid = results.filter(r => !r.error);
   if (!valid.length) return;
 
   // ── Summary ──
-  const recLabel = fixedRecSec !== null
-    ? fmtTime(fixedRecSec)
-    : `${recDistVal}${recDistUnit} jog`;
+  const recLabel = fixedRecSec !== null ? fmtTime(fixedRecSec) : `${recDistVal}${recDistUnit} jog`;
 
   document.getElementById('summaryBar').innerHTML = `
     <div class="si"><div class="sl">Rep Distance</div><div class="sv">${repDist}${distUnit}</div></div>
     <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
-    <div class="si"><div class="sl">Available Time</div><div class="sv">${workoutMin - warmup} min</div></div>
-    <div class="si"><div class="sl">Warmup / CD</div><div class="sv">${warmup} min</div></div>
     <div class="si"><div class="sl">Anchor Reps</div><div class="sv">${anchorReps} × ${groups[0].name}</div></div>
+    <div class="si"><div class="sl">Anchor Time</div><div class="sv">${fmtTime(anchorTotalSec)}</div></div>
     <div class="si"><div class="sl">Rep Range</div><div class="sv">${Math.min(...valid.map(r=>r.reps))}–${Math.max(...valid.map(r=>r.reps))}</div></div>
   `;
 
@@ -689,38 +669,45 @@ function calculate() {
   valid.forEach(r => {
     const paceLabel = r.gFast && r.gSlow
       ? `${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`
-      : r.gFast ? `sub ${fmtTime(r.gSlow || r.gFast)}/mi`
-      : `${fmtTime(r.avgPace)}/mi`;
-
-    const recDisplay = fixedRecSec !== null
-      ? fmtTime(r.gRecSec)
-      : `${recDistVal}${recDistUnit}`;
+      : r.gFast ? `${fmtTime(r.gFast)}+/mi` : `${fmtTime(r.avgPace)}/mi`;
 
     const recSub = fixedRecSec === null
       ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace + 120)}/mi</div>`
       : `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
 
-    const diffAbs = Math.abs(r.diff);
-    const warnHtml = diffAbs > 60 && r.idx !== 0
-      ? `<div class="warn">Finishes ~${fmtTime(diffAbs)} ${r.diff > 0 ? 'after' : 'before'} anchor</div>`
-      : '';
+    // Delta vs anchor
+    let deltaHtml = '';
+    if (r.idx !== 0) {
+      const diffAbs = Math.abs(r.diff);
+      if (diffAbs < 15) {
+        deltaHtml = `<div class="delta-row even">≈ same finish time as anchor</div>`;
+      } else {
+        const sign = r.diff > 0 ? '+' : '−';
+        const cls = r.diff > 0 ? 'over' : 'under';
+        const label = r.diff > 0 ? 'after anchor' : 'before anchor';
+        deltaHtml = `<div class="delta-row ${cls}">${sign}${fmtTime(diffAbs)} ${label}</div>`;
+      }
+    }
 
-    const openNote = r.gFast && !r.gSlow && r.idx !== 0
-      ? `<div class="warn" style="background:rgba(240,165,0,0.07);border-top-color:rgba(240,165,0,0.3);color:#f0c060;">Open-ended pace — avg estimated at ${fmtTime(r.avgPace)}/mi</div>`
-      : '';
+    const openNote = r.gFast && !r.gSlow
+      ? `<div class="warn">Open-ended group — avg estimated at ${fmtTime(r.avgPace)}/mi</div>` : '';
+
+    const overrideBadge = r.isOverridden
+      ? ` <span style="font-size:0.6rem;background:var(--green);color:#000;padding:2px 5px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">OVERRIDE</span>` : '';
 
     const card = document.createElement('div');
-    card.className = 'result-card';
+    card.className = 'result-card' + (r.isOverridden ? ' overridden-card' : '');
     card.innerHTML = `
       <div class="rct">
         <div class="dot" style="background:${r.color}"></div>
-        <div class="gname">${r.name}</div>
+        <div class="gname">${r.name}${overrideBadge}</div>
         <div class="plabel">${paceLabel}</div>
       </div>
       <div class="rcb">
         <div class="stat">
-          <div class="sl">Reps</div>
-          <div class="sv big">${r.reps}</div>
+          <div class="sl">Reps${r.isOverridden ? '' : (r.idx > 0 ? ' (auto)' : '')}</div>
+          <div class="sv big${r.isOverridden ? ' overridden' : ''}">${r.reps}</div>
+          ${r.isOverridden ? `<div class="sub">auto would be ${r.autoReps}</div>` : ''}
         </div>
         <div class="stat cycle-stat">
           <div class="sl">Cycle (rep + recovery)</div>
@@ -738,7 +725,7 @@ function calculate() {
           <div class="sv grn">${fmtTime(r.totalSec)}</div>
         </div>
       </div>
-      ${openNote}${warnHtml}
+      ${deltaHtml}${openNote}
     `;
     cards.appendChild(card);
   });
