@@ -28,7 +28,7 @@
     padding: 2rem 1rem 4rem;
   }
 
-  .header { text-align: center; margin-bottom: 2.5rem; }
+  .header { text-align: center; margin-bottom: 2rem; }
   .header h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
@@ -42,6 +42,38 @@
   .header p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; }
 
   .container { max-width: 940px; margin: 0 auto; }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    border-right: 1px solid var(--border);
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--card); color: var(--accent); }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
   .section-header {
     font-family: 'Barlow Condensed', sans-serif;
@@ -57,7 +89,7 @@
   }
   .section-header::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  /* ── Setup ── */
+  /* ── Fields ── */
   .setup-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -65,7 +97,6 @@
     margin-bottom: 1.5rem;
     align-items: start;
   }
-
   .field {
     background: var(--card);
     border: 1px solid var(--border);
@@ -155,33 +186,15 @@
   .rec-inputs select option { background: var(--card); }
   .rec-inputs .unit { color: var(--muted); font-size: 1rem; }
   .rec-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
-  .pace-offset-row {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-top: 0.65rem; flex-wrap: wrap;
-  }
-  .pace-offset-label {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
-    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-    white-space: nowrap;
-  }
-  .pace-offset-ctrl {
-    display: flex; align-items: center; gap: 0;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
-  }
-  .offset-btn {
-    background: transparent; border: none; color: var(--muted); cursor: pointer;
-    padding: 4px 12px; font-size: 1rem; font-weight: 700; transition: all 0.15s; line-height: 1;
-  }
+  .pace-offset-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.65rem; flex-wrap: wrap; }
+  .pace-offset-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .pace-offset-ctrl { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .offset-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; padding: 4px 12px; font-size: 1rem; font-weight: 700; transition: all 0.15s; line-height: 1; }
   .offset-btn:hover { background: var(--border); color: var(--text); }
-  .offset-display {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
-    color: var(--accent); padding: 4px 10px; white-space: nowrap;
-    border-left: 1px solid var(--border); border-right: 1px solid var(--border);
-  }
+  .offset-display { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--accent); padding: 4px 10px; white-space: nowrap; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
 
   /* ── Pace Groups ── */
   .pace-groups { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
-
   .pace-row {
     background: var(--card);
     border: 1px solid var(--border);
@@ -193,111 +206,49 @@
   }
   .pace-row.anchor { border-color: var(--accent); }
   .pace-row:focus-within { border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
-
-  .pc {
-    padding: 0.85rem 1rem;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  .pc { padding: 0.85rem 1rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
   .pc:last-child { border-right: none; }
-  .pc label {
-    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
-    font-family: 'Barlow Condensed', sans-serif; white-space: nowrap;
-  }
-  .pc input {
-    background: transparent; border: none; outline: none;
-    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: 1.1rem; width: 100%;
-  }
+  .pc label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; font-family: 'Barlow Condensed', sans-serif; white-space: nowrap; }
+  .pc input { background: transparent; border: none; outline: none; color: var(--text); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; width: 100%; }
   .pc input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
   .pc input.reps-input { font-size: 1.4rem; color: var(--accent); width: 70px; }
   .pc input.reps-input.overridden { color: var(--green); }
-  .pc input.reps-input.is-auto { color: var(--muted); }
-
-  .pc .reps-hint {
-    font-size: 0.62rem; color: var(--muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    margin-top: 2px;
-  }
-  .pc .reps-hint .clear-link {
-    color: var(--accent); cursor: pointer; text-decoration: underline;
-  }
-
   .pc.namecell { flex-direction: row; align-items: center; }
   .cdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-right:8px; }
   .namecell .inner { display:flex; flex-direction:column; }
-
-  .anchor-badge {
-    display: inline-block;
-    background: var(--accent); color: #000;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.58rem; font-weight: 800;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 2px 5px; border-radius: 3px; margin-top: 4px; width: fit-content;
-  }
-
-  .remove-btn {
-    background: none; border: none; color: var(--muted); cursor: pointer;
-    padding: 0 1rem; font-size: 1rem; transition: color 0.15s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .remove-btn:hover { color: var(--red); }
-  .remove-btn:disabled { opacity: 0.2; cursor: default; }
-
+  .anchor-badge { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:2px 5px; border-radius:3px; margin-top:4px; width:fit-content; }
+  .remove-btn { background:none; border:none; color:var(--muted); cursor:pointer; padding:0 1rem; font-size:1rem; transition:color 0.15s; display:flex; align-items:center; justify-content:center; }
+  .remove-btn:hover { color:var(--red); }
+  .remove-btn:disabled { opacity:0.2; cursor:default; }
   .groups-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; margin-top: -0.25rem; }
   .groups-note strong { color: var(--accent); }
 
-  .add-btn {
-    background: transparent; border: 1px dashed var(--border); border-radius: 10px;
-    color: var(--muted); cursor: pointer; width: 100%; padding: 0.75rem;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; margin-bottom: 1.5rem;
-  }
-  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+  /* ── Reps toggle ── */
+  .reps-toggle { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; width:fit-content; margin-bottom:0.4rem; }
+  .reps-toggle-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:3px 10px; font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.15s; line-height:1.4; }
+  .reps-toggle-btn.on { background:var(--green); color:#000; }
 
-  .calc-btn {
-    background: var(--accent); color: #000; border: none; border-radius: 10px;
-    padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; display: block; width: 100%; margin-bottom: 2rem;
-    transition: background 0.2s, transform 0.1s;
-  }
-  .calc-btn:hover { background: #ffc13d; }
-  .calc-btn:active { transform: scale(0.99); }
+  .add-btn { background:transparent; border:1px dashed var(--border); border-radius:10px; color:var(--muted); cursor:pointer; width:100%; padding:0.75rem; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.2s; margin-bottom:1.5rem; }
+  .add-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+  .calc-btn { background:var(--accent); color:#000; border:none; border-radius:10px; padding:1rem 2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; display:block; width:100%; margin-bottom:2rem; transition:background 0.2s,transform 0.1s; }
+  .calc-btn:hover { background:#ffc13d; }
+  .calc-btn:active { transform:scale(0.99); }
 
   /* ── Results ── */
-  #results { display: none; }
-
-  .summary-bar {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-    padding: 1rem 1.5rem; display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;
-  }
+  #results { display:none; }
+  .summary-bar { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1rem; }
   .si { display:flex; flex-direction:column; gap:0.15rem; }
   .si .sl { font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
   .si .sv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.1rem; color:var(--text); }
-
-  .result-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    gap: 1rem; margin-bottom: 1.5rem;
-  }
-
-  .result-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
-  .result-card.overridden-card { border-color: var(--green); }
-
-  .rct {
-    padding: 0.9rem 1.1rem 0.7rem; display: flex; align-items: center;
-    gap: 0.6rem; border-bottom: 1px solid var(--border);
-  }
+  .result-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+  .result-card { border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--card); }
+  .result-card.overridden-card { border-color:var(--green); }
+  .rct { padding:0.9rem 1.1rem 0.7rem; display:flex; align-items:center; gap:0.6rem; border-bottom:1px solid var(--border); }
   .rct .dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
   .rct .gname { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.04em; }
   .rct .plabel { margin-left:auto; font-size:0.72rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-weight:600; text-align:right; line-height:1.3; }
-
-  .rcb { padding: 0.9rem 1.1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
-
+  .rcb { padding:0.9rem 1.1rem; display:grid; grid-template-columns:1fr 1fr; gap:0.65rem; }
   .stat { display:flex; flex-direction:column; gap:0.1rem; }
   .stat .sl { font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); font-family:'Barlow Condensed',sans-serif; }
   .stat .sv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
@@ -305,73 +256,129 @@
   .stat .sv.big.overridden { color:var(--green); }
   .stat .sv.grn { color:var(--green); }
   .stat .sub { font-size:0.68rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; margin-top:1px; }
-
-  .cycle-stat { grid-column: span 2; }
+  .cycle-stat { grid-column:span 2; }
   .cycle-row { display:flex; align-items:baseline; gap:0.3rem; flex-wrap:wrap; margin-top:0.1rem; }
   .cv { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); }
   .ceq { color:var(--accent); font-size:1.3rem; }
   .cplus { font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.95rem; color:var(--muted); }
+  .delta-row { padding:0.4rem 1.1rem; border-top:1px solid var(--border); font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:0.4rem; }
+  .delta-row.over { color:var(--red); }
+  .delta-row.under { color:var(--green); }
+  .delta-row.even { color:var(--muted); }
+  .warn { padding:0.45rem 1.1rem; font-size:0.76rem; color:#f4a070; border-top:1px solid rgba(224,92,42,0.3); background:rgba(224,92,42,0.07); }
+  .print-btn { background:transparent; border:1px solid var(--border); border-radius:10px; color:var(--muted); cursor:pointer; padding:0.7rem 1.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.2s; }
+  .print-btn:hover { border-color:var(--muted); color:var(--text); }
 
-  /* ── Reps toggle ── */
-  .reps-toggle {
-    display: flex;
+  /* ── Optimizer Tab ── */
+  .opt-setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+  }
+
+  .opt-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+  }
+  .opt-note strong { color: var(--text); }
+
+  #optResults { display: none; margin-top: 0.5rem; }
+
+  .opt-table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .opt-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .opt-table thead tr {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .opt-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.7rem 1.1rem;
+    text-align: left;
+  }
+
+  .opt-table td {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+
+  .opt-table tr:last-child td { border-bottom: none; }
+
+  .opt-table tr.anchor-row td { color: var(--accent); }
+  .opt-table tr.anchor-row { background: rgba(240,165,0,0.05); }
+
+  .opt-table .reps-cell {
+    font-size: 1.3rem;
+    color: var(--text);
+  }
+
+  .opt-table .pace-cell { color: var(--text); }
+  .opt-table .pace-range-cell { color: var(--muted); }
+  .opt-table .time-cell { color: var(--green); }
+  .opt-table .cycle-cell { color: var(--muted); font-size: 0.9rem; }
+
+  .opt-context {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    width: fit-content;
-    margin-bottom: 0.4rem;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
   }
-  .reps-toggle-btn {
-    background: transparent; border: none; color: var(--muted); cursor: pointer;
-    padding: 3px 10px; font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; transition: all 0.15s; line-height: 1.4;
-  }
-  .reps-toggle-btn.active-auto { background: var(--surface); color: var(--muted); }
-  .reps-toggle-btn.on { background: var(--green); color: #000; }
-
-  .delta-row {
-    padding: 0.4rem 1.1rem; border-top: 1px solid var(--border);
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-  .delta-row.over { color: var(--red); }
-  .delta-row.under { color: var(--green); }
-  .delta-row.even { color: var(--muted); }
-
-  .warn {
-    padding: 0.45rem 1.1rem; font-size:0.76rem; color:#f4a070;
-    border-top: 1px solid rgba(224,92,42,0.3);
-    background: rgba(224,92,42,0.07);
-  }
-
-  .print-btn {
-    background: transparent; border: 1px solid var(--border); border-radius: 10px;
-    color: var(--muted); cursor: pointer; padding: 0.7rem 1.5rem;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s;
-  }
-  .print-btn:hover { border-color: var(--muted); color: var(--text); }
 
   @media (max-width: 580px) {
     .setup-grid { grid-template-columns: 1fr; }
     .recovery-card { grid-column: span 1; }
     .pace-row { grid-template-columns: 1fr 1fr; }
-    .pc { border-right: none !important; border-bottom: 1px solid var(--border); }
-    .pc:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+    .pc { border-right:none !important; border-bottom:1px solid var(--border); }
+    .pc:nth-child(odd) { border-right:1px solid var(--border) !important; }
+    .tabs { flex-direction: column; }
+    .tab-btn { border-right: none; border-bottom: 1px solid var(--border); }
+    .tab-btn:last-child { border-bottom: none; }
   }
 
   @media print {
     body { background:white; color:black; padding:1rem; }
-    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group,.reps-hint { display:none; }
-    .field,.pace-row,.result-card,.summary-bar,.recovery-card { background:white !important; border-color:#ccc !important; }
+    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group,.tabs { display:none; }
+    .tab-panel { display:block !important; }
+    .field,.pace-row,.result-card,.summary-bar,.recovery-card,.opt-table-wrap,.opt-context { background:white !important; border-color:#ccc !important; }
     .sv,.gname,.sl,.section-header,.header h1,.header p { color:black !important; }
     .sv.big { color:#c07000 !important; }
-    .sv.grn { color:#006040 !important; }
-    .plabel,.rec-note,.groups-note { color:#555 !important; }
-    #results { display:block !important; }
+    .sv.grn,.time-cell { color:#006040 !important; }
+    .plabel,.rec-note,.groups-note,.opt-note { color:#555 !important; }
+    #results,#optResults { display:block !important; }
     .anchor-badge { background:#c07000 !important; }
+    .opt-table tr.anchor-row td { color:#c07000 !important; }
   }
 </style>
 </head>
@@ -380,136 +387,310 @@
 <div class="container">
   <div class="header">
     <h1>Tuesday Night <span>Rep Calculator</span></h1>
-    <p>Set Group A's reps — all other groups scale to finish in the same window.</p>
+    <p>Build workouts where every pace group finishes at the same time.</p>
   </div>
 
-  <div class="section-header">Workout Setup</div>
-  <div class="setup-grid">
-    <div class="field">
-      <label>Rep Distance</label>
-      <div class="field-inline">
-        <input type="number" id="repDist" value="400" min="50" step="50" style="width:80px">
-        <select id="distUnit">
-          <option value="m">m</option>
-          <option value="mi">mi</option>
-          <option value="km">km</option>
-        </select>
-      </div>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('calc')">⚡ Rep Calculator</button>
+    <button class="tab-btn" onclick="switchTab('opt')">🎯 Pace Window Optimizer</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TAB 1 — REP CALCULATOR
+  ══════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-calc">
+
+    <div class="opt-note">
+      Set your <strong>rep distance and recovery</strong>, then define pace groups with a range for each. The <strong>first group is your anchor</strong> — enter its rep count and all other groups are automatically calculated to finish in the same time. Editing a group's slowest pace will auto-update the next group's fastest so ranges always abut. Toggle any group to <strong>Manual</strong> to try a specific rep count and see the time impact vs. the anchor.
     </div>
 
-    <div class="recovery-card">
-      <div class="recovery-top">
-        <label>Recovery Between Reps</label>
-        <div class="toggle-group">
-          <button class="toggle-btn active" id="btnTime" onclick="setRecMode('time')">⏱ Time</button>
-          <button class="toggle-btn" id="btnDist" onclick="setRecMode('dist')">📏 Distance</button>
-        </div>
-      </div>
-      <div id="recTimeUI" class="rec-inputs">
-        <input type="number" id="recMin" value="2" min="0" max="15" style="width:55px">
-        <span class="unit">:</span>
-        <input type="number" id="recSec" value="0" min="0" max="59" style="width:48px">
-        <span class="unit">min : sec</span>
-      </div>
-      <div id="recDistUI" style="display:none">
-        <div class="rec-inputs">
-          <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
-          <select id="recDistUnit">
+    <div class="section-header">Workout Setup</div>
+    <div class="setup-grid">
+      <div class="field">
+        <label>Rep Distance</label>
+        <div class="field-inline">
+          <input type="number" id="repDist" value="400" min="50" step="50" style="width:80px">
+          <select id="distUnit">
             <option value="m">m</option>
             <option value="mi">mi</option>
             <option value="km">km</option>
           </select>
         </div>
-        <div class="pace-offset-row">
-          <span class="pace-offset-label">Recovery pace</span>
-          <div class="pace-offset-ctrl">
-            <button class="offset-btn" onclick="changeOffset(-30)">−</button>
-            <span class="offset-display" id="offsetDisplay">interval + 2:00/mi</span>
-            <button class="offset-btn" onclick="changeOffset(+30)">+</button>
+      </div>
+
+      <div class="recovery-card">
+        <div class="recovery-top">
+          <label>Recovery Between Reps</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="btnTime" onclick="setRecMode('time')">⏱ Time</button>
+            <button class="toggle-btn" id="btnDist" onclick="setRecMode('dist')">📏 Distance</button>
+          </div>
+        </div>
+        <div id="recTimeUI" class="rec-inputs">
+          <input type="number" id="recMin" value="2" min="0" max="15" style="width:55px">
+          <span class="unit">:</span>
+          <input type="number" id="recSec" value="0" min="0" max="59" style="width:48px">
+          <span class="unit">min : sec</span>
+        </div>
+        <div id="recDistUI" style="display:none">
+          <div class="rec-inputs">
+            <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
+            <select id="recDistUnit">
+              <option value="m">m</option>
+              <option value="mi">mi</option>
+              <option value="km">km</option>
+            </select>
+          </div>
+          <div class="pace-offset-row">
+            <span class="pace-offset-label">Recovery pace</span>
+            <div class="pace-offset-ctrl">
+              <button class="offset-btn" onclick="changeOffset(-30)">−</button>
+              <span class="offset-display" id="offsetDisplay">interval + 2:00/mi</span>
+              <button class="offset-btn" onclick="changeOffset(+30)">+</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="section-header">Pace Groups</div>
-  <p class="groups-note">The <strong>first group</strong> is your anchor — set its reps. Others calculate automatically, but you can type a number to override and see the time impact.</p>
-  <div class="pace-groups" id="paceGroups"></div>
-  <button class="add-btn" onclick="addGroup()">+ Add Pace Group</button>
+    <div class="section-header">Pace Groups</div>
+    <p class="groups-note">The <strong>first group</strong> is your anchor — set its reps. Others calculate automatically, but you can toggle Manual to override and see the time impact.</p>
+    <div class="pace-groups" id="paceGroups"></div>
+    <button class="add-btn" onclick="addGroup()">+ Add Pace Group</button>
+    <button class="calc-btn" onclick="calculate()">Calculate Reps →</button>
 
-  <button class="calc-btn" onclick="calculate()">Calculate Reps →</button>
+    <div id="results">
+      <div class="section-header">Results</div>
+      <div class="summary-bar" id="summaryBar"></div>
+      <div class="result-cards" id="resultCards"></div>
+      <button class="print-btn" onclick="window.print()">🖨 Print Coaching Sheet</button>
+    </div>
 
-  <div id="results">
-    <div class="section-header">Results</div>
-    <div class="summary-bar" id="summaryBar"></div>
-    <div class="result-cards" id="resultCards"></div>
-    <button class="print-btn" onclick="window.print()">🖨 Print Coaching Sheet</button>
-  </div>
-</div>
+  </div><!-- /tab-calc -->
+
+  <!-- ══════════════════════════════════════════
+       TAB 2 — PACE WINDOW OPTIMIZER
+  ══════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-opt">
+
+    <div class="opt-note">
+      Given your <strong>anchor group's pace and rep count</strong>, this shows the maximum average pace a runner can be at to complete each rep count within the same time budget — so you can see exactly what pace window maps to 5 reps, 6 reps, 7 reps, etc.
+    </div>
+
+    <div class="section-header">Anchor Group</div>
+    <div class="opt-setup-grid">
+      <div class="field">
+        <label>Anchor Avg Pace (/mi)</label>
+        <div class="field-inline">
+          <input type="text" id="optAnchorPace" value="7:30" style="width:80px">
+          <span class="unit">/mi</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anchor Reps</label>
+        <div class="field-inline">
+          <input type="number" id="optAnchorReps" value="8" min="1" max="40" style="width:60px">
+          <span class="unit">reps</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rep Distance</label>
+        <div class="field-inline">
+          <input type="number" id="optRepDist" value="800" min="50" step="50" style="width:80px">
+          <select id="optDistUnit">
+            <option value="m">m</option>
+            <option value="mi">mi</option>
+            <option value="km">km</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rep Count Range</label>
+        <div class="field-inline">
+          <input type="number" id="optMinReps" value="4" min="1" max="20" style="width:50px">
+          <span class="unit">to</span>
+          <input type="number" id="optMaxReps" value="10" min="1" max="40" style="width:50px">
+          <span class="unit">reps</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">Recovery</div>
+    <div class="opt-setup-grid" style="margin-bottom:1.5rem">
+      <div class="recovery-card" style="grid-column:unset">
+        <div class="recovery-top">
+          <label>Recovery Between Reps</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="optBtnTime" onclick="setOptRecMode('time')">⏱ Time</button>
+            <button class="toggle-btn" id="optBtnDist" onclick="setOptRecMode('dist')">📏 Distance</button>
+          </div>
+        </div>
+        <div id="optRecTimeUI" class="rec-inputs">
+          <input type="number" id="optRecMin" value="2" min="0" max="15" style="width:55px">
+          <span class="unit">:</span>
+          <input type="number" id="optRecSec" value="0" min="0" max="59" style="width:48px">
+          <span class="unit">min : sec</span>
+        </div>
+        <div id="optRecDistUI" style="display:none">
+          <div class="rec-inputs">
+            <input type="number" id="optRecDist" value="200" min="10" step="10" style="width:80px">
+            <select id="optRecDistUnit">
+              <option value="m">m</option>
+              <option value="mi">mi</option>
+              <option value="km">km</option>
+            </select>
+          </div>
+          <div class="pace-offset-row">
+            <span class="pace-offset-label">Recovery pace</span>
+            <div class="pace-offset-ctrl">
+              <button class="offset-btn" onclick="changeOptOffset(-30)">−</button>
+              <span class="offset-display" id="optOffsetDisplay">interval + 2:00/mi</span>
+              <button class="offset-btn" onclick="changeOptOffset(+30)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="runOptimizer()">Generate Pace Windows →</button>
+
+    <div id="optResults">
+      <div class="section-header">Pace Windows by Rep Count</div>
+      <div class="opt-context" id="optContext"></div>
+      <div class="opt-table-wrap">
+        <table class="opt-table">
+          <thead>
+            <tr>
+              <th>Reps</th>
+              <th>Max Avg Pace</th>
+              <th>Suggested Range</th>
+              <th>Rep Time</th>
+              <th>Cycle Time</th>
+              <th>Total Rep Time</th>
+              <th>Total Time</th>
+            </tr>
+          </thead>
+          <tbody id="optTableBody"></tbody>
+        </table>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨 Print</button>
+    </div>
+
+  </div><!-- /tab-opt -->
+
+</div><!-- /container -->
 
 <script>
+// ─────────────────────────────────────────
+//  Shared state
+// ─────────────────────────────────────────
 const COLORS = ['#f0a500','#3ecf8e','#5b8af5','#e05c2a','#b06cf5','#3bbfcf','#f05a7e','#e8d060'];
 let recMode = 'time';
+let recPaceOffsetSec = 120;
+let optRecMode = 'time';
+let optRecPaceOffsetSec = 120;
 
-const defaultGroups = [
-  { name: 'Group A', fastPace: '6:00', slowPace: '7:59', anchorReps: 8, overrideReps: null },
-  { name: 'Group B', fastPace: '8:00', slowPace: '9:59', anchorReps: null, overrideReps: null },
-  { name: 'Group C', fastPace: '10:00', slowPace: '11:59', anchorReps: null, overrideReps: null },
-  { name: 'Group D', fastPace: '12:00', slowPace: '', anchorReps: null, overrideReps: null },
-];
-
-let groups = defaultGroups.map((g, i) => ({ ...g, id: i, color: COLORS[i] }));
-let nextId = groups.length;
-
-let recPaceOffsetSec = 120; // default +2:00/mi
-
-function changeOffset(deltaSec) {
-  // clamp between 0 (same pace) and 8:00/mi slower
-  recPaceOffsetSec = Math.max(0, Math.min(480, recPaceOffsetSec + deltaSec));
-  const m = Math.floor(recPaceOffsetSec / 60);
-  const s = recPaceOffsetSec % 60;
-  const label = recPaceOffsetSec === 0
-    ? 'interval pace'
-    : `interval + ${m}:${String(s).padStart(2,'0')}/mi`;
-  document.getElementById('offsetDisplay').textContent = label;
+// ─────────────────────────────────────────
+//  Tab switching
+// ─────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (i===0&&tab==='calc')||(i===1&&tab==='opt')));
+  document.getElementById('tab-calc').classList.toggle('active', tab==='calc');
+  document.getElementById('tab-opt').classList.toggle('active', tab==='opt');
 }
 
+// ─────────────────────────────────────────
+//  Recovery mode — calculator tab
+// ─────────────────────────────────────────
 function setRecMode(mode) {
   recMode = mode;
-  document.getElementById('btnTime').classList.toggle('active', mode === 'time');
-  document.getElementById('btnDist').classList.toggle('active', mode === 'dist');
-  document.getElementById('recTimeUI').style.display = mode === 'time' ? 'flex' : 'none';
-  document.getElementById('recDistUI').style.display = mode === 'dist' ? 'flex' : 'none';
-
+  document.getElementById('btnTime').classList.toggle('active', mode==='time');
+  document.getElementById('btnDist').classList.toggle('active', mode==='dist');
+  document.getElementById('recTimeUI').style.display = mode==='time' ? 'flex' : 'none';
+  document.getElementById('recDistUI').style.display = mode==='dist' ? 'block' : 'none';
 }
 
-// Format seconds as MM:SS pace string
-function secsToPaceStr(sec) {
-  const s = Math.round(sec);
-  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+function changeOffset(delta) {
+  recPaceOffsetSec = Math.max(0, Math.min(480, recPaceOffsetSec + delta));
+  document.getElementById('offsetDisplay').textContent = offsetLabel(recPaceOffsetSec);
 }
 
-// Parse "MM:SS" → seconds, or decimal → seconds
+// ─────────────────────────────────────────
+//  Recovery mode — optimizer tab
+// ─────────────────────────────────────────
+function setOptRecMode(mode) {
+  optRecMode = mode;
+  document.getElementById('optBtnTime').classList.toggle('active', mode==='time');
+  document.getElementById('optBtnDist').classList.toggle('active', mode==='dist');
+  document.getElementById('optRecTimeUI').style.display = mode==='time' ? 'flex' : 'none';
+  document.getElementById('optRecDistUI').style.display = mode==='dist' ? 'block' : 'none';
+}
+
+function changeOptOffset(delta) {
+  optRecPaceOffsetSec = Math.max(0, Math.min(480, optRecPaceOffsetSec + delta));
+  document.getElementById('optOffsetDisplay').textContent = offsetLabel(optRecPaceOffsetSec);
+}
+
+function offsetLabel(sec) {
+  if (sec === 0) return 'interval pace';
+  const m = Math.floor(sec/60), s = sec%60;
+  return `interval + ${m}:${String(s).padStart(2,'0')}/mi`;
+}
+
+// ─────────────────────────────────────────
+//  Utilities
+// ─────────────────────────────────────────
 function parsePace(str) {
   if (!str || !str.trim()) return null;
   const p = str.trim().split(':');
   if (p.length === 2) {
     const m = parseInt(p[0]), s = parseInt(p[1]);
-    if (isNaN(m) || isNaN(s)) return null;
-    return m * 60 + s;
+    if (isNaN(m)||isNaN(s)) return null;
+    return m*60+s;
   }
   const n = parseFloat(str);
-  return isNaN(n) ? null : n * 60;
+  return isNaN(n) ? null : n*60;
 }
 
-// When slowPace of group at idx changes, update only the immediate next group's fastest pace
+function secsToPaceStr(sec) {
+  const s = Math.round(sec);
+  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+
+function fmtTime(sec) {
+  if (!isFinite(sec)||sec<0) return '—';
+  const s = Math.round(sec);
+  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+
+function toMiles(dist, unit) {
+  if (unit==='mi') return dist;
+  if (unit==='km') return dist/1.60934;
+  return dist/1609.34;
+}
+
+function repSec(paceSec_mi, dist, unit) {
+  return paceSec_mi * toMiles(dist, unit);
+}
+
+// ─────────────────────────────────────────
+//  Pace Groups (calculator tab)
+// ─────────────────────────────────────────
+const defaultGroups = [
+  { name:'Group A', fastPace:'6:00', slowPace:'7:59', anchorReps:8, overrideReps:null },
+  { name:'Group B', fastPace:'8:00', slowPace:'9:59', anchorReps:null, overrideReps:null },
+  { name:'Group C', fastPace:'10:00', slowPace:'11:59', anchorReps:null, overrideReps:null },
+  { name:'Group D', fastPace:'12:00', slowPace:'', anchorReps:null, overrideReps:null },
+];
+let groups = defaultGroups.map((g,i) => ({...g, id:i, color:COLORS[i]}));
+let nextId = groups.length;
+
 function cascadeFromSlowPace(idx) {
-  const next = groups[idx + 1];
+  const next = groups[idx+1];
   if (!next) { renderGroups(); return; }
   const prevSlow = parsePace(groups[idx].slowPace);
-  if (prevSlow !== null) {
-    next.fastPace = secsToPaceStr(prevSlow + 1);
-  }
+  if (prevSlow !== null) next.fastPace = secsToPaceStr(prevSlow+1);
   renderGroups();
 }
 
@@ -517,12 +698,10 @@ function renderGroups() {
   const c = document.getElementById('paceGroups');
   c.innerHTML = '';
   groups.forEach((g, idx) => {
-    const isAnchor = idx === 0;
-    const row = document.createElement('div');
-    row.className = 'pace-row' + (isAnchor ? ' anchor' : '');
-
+    const isAnchor = idx===0;
     const isManual = !isAnchor && g.overrideReps !== null;
-
+    const row = document.createElement('div');
+    row.className = 'pace-row'+(isAnchor?' anchor':'');
     row.innerHTML = `
       <div class="pc namecell">
         <span class="cdot" style="background:${g.color}"></span>
@@ -534,28 +713,26 @@ function renderGroups() {
       </div>
       <div class="pc">
         <label>Fastest Pace (/mi)</label>
-        <input type="text" id="fast-${g.id}" value="${g.fastPace}"
-          oninput="upd(${g.id},'fastPace',this.value)"
-          placeholder="6:00"
-          ${idx > 0 ? 'readonly style="color:var(--muted);cursor:default"' : ''}>
+        <input type="text" value="${g.fastPace}" oninput="upd(${g.id},'fastPace',this.value)" placeholder="6:00"
+          ${idx>0?'readonly style="color:var(--muted);cursor:default"':''}>
       </div>
       <div class="pc">
         <label>Slowest Pace (/mi)</label>
         <input type="text" value="${g.slowPace}"
-          oninput="upd(${g.id},'slowPace',this.value)" onblur="cascadeFromSlowPace(${idx})"
+          oninput="upd(${g.id},'slowPace',this.value)"
+          onblur="cascadeFromSlowPace(${idx})"
           placeholder="open-ended">
       </div>
       <div class="pc">
         <label>Reps</label>
         ${isAnchor ? `
-          <input type="number" class="reps-input"
-            value="${g.anchorReps || 8}" min="1" max="40"
+          <input type="number" class="reps-input" value="${g.anchorReps||8}" min="1" max="40"
             oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">
           <div style="font-size:0.6rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:2px;">anchor</div>
         ` : `
           <div class="reps-toggle">
-            <button class="reps-toggle-btn ${!isManual ? 'on' : ''}" onclick="clearOverride(${g.id})">Auto</button>
-            <button class="reps-toggle-btn ${isManual ? 'on' : ''}" onclick="setManual(${g.id})">Manual</button>
+            <button class="reps-toggle-btn ${!isManual?'on':''}" onclick="clearOverride(${g.id})">Auto</button>
+            <button class="reps-toggle-btn ${isManual?'on':''}" onclick="setManual(${g.id})">Manual</button>
           </div>
           ${isManual ? `<input type="number" class="reps-input overridden"
             value="${g.overrideReps}" min="1" max="40" style="margin-top:2px;"
@@ -569,135 +746,97 @@ function renderGroups() {
 }
 
 function upd(id, key, val) {
-  const g = groups.find(g => g.id === id);
-  if (g) g[key] = val;
+  const g = groups.find(g=>g.id===id);
+  if (g) g[key]=val;
 }
-
 function updOverride(id, val) {
-  const g = groups.find(g => g.id === id);
+  const g = groups.find(g=>g.id===id);
   if (!g) return;
   const n = parseInt(val);
-  g.overrideReps = (!val || isNaN(n)) ? null : n;
+  g.overrideReps = (!val||isNaN(n)) ? null : n;
 }
-
 function clearOverride(id) {
-  const g = groups.find(g => g.id === id);
-  if (g) { g.overrideReps = null; renderGroups(); }
+  const g = groups.find(g=>g.id===id);
+  if (g) { g.overrideReps=null; renderGroups(); }
 }
-
 function setManual(id) {
-  const g = groups.find(g => g.id === id);
-  if (!g || g.overrideReps !== null) return;
-  // Seed with the last calculated auto value if available, else a reasonable default
-  g.overrideReps = g._lastAutoReps || 6;
+  const g = groups.find(g=>g.id===id);
+  if (!g||g.overrideReps!==null) return;
+  g.overrideReps = g._lastAutoReps||6;
   renderGroups();
 }
-
 function addGroup() {
-  const letter = String.fromCharCode(65 + groups.length);
-  // Auto-set fastest pace from previous group's slowest + 1s
-  let fastPace = '';
-  if (groups.length > 0) {
-    const prevSlow = parsePace(groups[groups.length - 1].slowPace);
-    if (prevSlow !== null) fastPace = secsToPaceStr(prevSlow + 1);
+  const letter = String.fromCharCode(65+groups.length);
+  let fastPace='';
+  if (groups.length>0) {
+    const prevSlow = parsePace(groups[groups.length-1].slowPace);
+    if (prevSlow!==null) fastPace = secsToPaceStr(prevSlow+1);
   }
-  groups.push({ id: nextId, name: `Group ${letter}`, fastPace, slowPace: '', anchorReps: null, overrideReps: null, color: COLORS[nextId % COLORS.length] });
+  groups.push({id:nextId, name:`Group ${letter}`, fastPace, slowPace:'', anchorReps:null, overrideReps:null, color:COLORS[nextId%COLORS.length]});
   nextId++;
   renderGroups();
 }
-
 function removeGroup(id) {
-  if (groups.length <= 1) return;
-  groups = groups.filter(g => g.id !== id);
+  if (groups.length<=1) return;
+  groups = groups.filter(g=>g.id!==id);
   renderGroups();
 }
 
-function toMiles(dist, unit) {
-  if (unit === 'mi') return dist;
-  if (unit === 'km') return dist / 1.60934;
-  return dist / 1609.34;
-}
-
-function repSec(paceSec_mi, dist, unit) {
-  return paceSec_mi * toMiles(dist, unit);
-}
-
-function fmtTime(sec) {
-  if (!isFinite(sec) || sec < 0) return '—';
-  const s = Math.round(sec);
-  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
-}
-
+// ─────────────────────────────────────────
+//  Calculator
+// ─────────────────────────────────────────
 function calculate() {
-  const repDist  = parseFloat(document.getElementById('repDist').value) || 400;
+  const repDist  = parseFloat(document.getElementById('repDist').value)||400;
   const distUnit = document.getElementById('distUnit').value;
 
-  let fixedRecSec = null, recDistVal = null, recDistUnit = null;
-  if (recMode === 'time') {
-    fixedRecSec = (parseInt(document.getElementById('recMin').value)||0) * 60
+  let fixedRecSec=null, recDistVal=null, recDistUnit=null;
+  if (recMode==='time') {
+    fixedRecSec = (parseInt(document.getElementById('recMin').value)||0)*60
                 + (parseInt(document.getElementById('recSec').value)||0);
   } else {
-    recDistVal  = parseFloat(document.getElementById('recDist').value) || 200;
+    recDistVal  = parseFloat(document.getElementById('recDist').value)||200;
     recDistUnit = document.getElementById('recDistUnit').value;
   }
 
-  // ── Anchor ──
   const anchor = groups[0];
-  const anchorReps = anchor.anchorReps || 8;
-  const aFast = parsePace(anchor.fastPace);
-  const aSlow = parsePace(anchor.slowPace);
-  let anchorPace = (aFast && aSlow) ? (aFast + aSlow) / 2 : (aFast || aSlow || 390);
+  const anchorReps = anchor.anchorReps||8;
+  const aFast = parsePace(anchor.fastPace), aSlow = parsePace(anchor.slowPace);
+  let anchorPace = (aFast&&aSlow) ? (aFast+aSlow)/2 : (aFast||aSlow||390);
 
   const anchorRepSec = repSec(anchorPace, repDist, distUnit);
-  const anchorRecSec = fixedRecSec !== null
-    ? fixedRecSec
-    : repSec(anchorPace + recPaceOffsetSec, recDistVal, recDistUnit);
-  const anchorTotalSec = anchorReps * anchorRepSec + (anchorReps - 1) * anchorRecSec;
+  const anchorRecSec = fixedRecSec!==null ? fixedRecSec : repSec(anchorPace+recPaceOffsetSec, recDistVal, recDistUnit);
+  const anchorTotalSec = anchorReps*anchorRepSec + (anchorReps-1)*anchorRecSec;
 
-  // ── All groups ──
-  const results = [];
-  groups.forEach((g, idx) => {
-    const gFast = parsePace(g.fastPace);
-    const gSlow = parsePace(g.slowPace);
+  const results=[];
+  groups.forEach((g,idx) => {
+    const gFast=parsePace(g.fastPace), gSlow=parsePace(g.slowPace);
     let avgPace;
-    if (gFast && gSlow) avgPace = (gFast + gSlow) / 2;
-    else if (gFast && !gSlow) avgPace = gFast * 1.08;
-    else if (!gFast && gSlow) avgPace = gSlow * 0.95;
-    else { results.push({ ...g, error: true, idx }); return; }
+    if (gFast&&gSlow) avgPace=(gFast+gSlow)/2;
+    else if (gFast&&!gSlow) avgPace=gFast*1.08;
+    else if (!gFast&&gSlow) avgPace=gSlow*0.95;
+    else { results.push({...g,error:true,idx}); return; }
 
     const gRepSec = repSec(avgPace, repDist, distUnit);
-    const gRecSec = fixedRecSec !== null
-      ? fixedRecSec
-      : repSec(avgPace + recPaceOffsetSec, recDistVal, recDistUnit);
+    const gRecSec = fixedRecSec!==null ? fixedRecSec : repSec(avgPace+recPaceOffsetSec, recDistVal, recDistUnit);
 
-    // Determine reps: anchor uses anchorReps, others auto-calc unless overridden
-    let autoReps, reps, isOverridden = false;
-    if (idx === 0) {
-      reps = anchorReps;
-      autoReps = anchorReps;
-    } else {
-      autoReps = Math.max(1, Math.floor((anchorTotalSec + gRecSec) / (gRepSec + gRecSec)));
-      if (g.overrideReps !== null) {
-        reps = g.overrideReps;
-        isOverridden = true;
-      } else {
-        reps = autoReps;
-      }
+    let autoReps, reps, isOverridden=false;
+    if (idx===0) { reps=anchorReps; autoReps=anchorReps; }
+    else {
+      autoReps = Math.max(1, Math.floor((anchorTotalSec+gRecSec)/(gRepSec+gRecSec)));
+      if (g.overrideReps!==null) { reps=g.overrideReps; isOverridden=true; }
+      else reps=autoReps;
     }
 
-    const totalSec = reps * gRepSec + (reps - 1) * gRecSec;
-    const diff = totalSec - anchorTotalSec;
-
+    const totalSec = reps*gRepSec+(reps-1)*gRecSec;
+    const diff = totalSec-anchorTotalSec;
     g._lastAutoReps = autoReps;
-    results.push({ ...g, avgPace, gFast, gSlow, gRepSec, gRecSec, reps, autoReps, totalSec, diff, idx, isOverridden });
+    results.push({...g,avgPace,gFast,gSlow,gRepSec,gRecSec,reps,autoReps,totalSec,diff,idx,isOverridden});
   });
 
-  const valid = results.filter(r => !r.error);
+  const valid = results.filter(r=>!r.error);
   if (!valid.length) return;
 
-  // ── Summary ──
-  const recLabel = fixedRecSec !== null ? fmtTime(fixedRecSec) : `${recDistVal}${recDistUnit} jog`;
-
+  const recLabel = fixedRecSec!==null ? fmtTime(fixedRecSec) : `${recDistVal}${recDistUnit} jog`;
   document.getElementById('summaryBar').innerHTML = `
     <div class="si"><div class="sl">Rep Distance</div><div class="sv">${repDist}${distUnit}</div></div>
     <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
@@ -706,42 +845,29 @@ function calculate() {
     <div class="si"><div class="sl">Rep Range</div><div class="sv">${Math.min(...valid.map(r=>r.reps))}–${Math.max(...valid.map(r=>r.reps))}</div></div>
   `;
 
-  // ── Cards ──
   const cards = document.getElementById('resultCards');
-  cards.innerHTML = '';
-
+  cards.innerHTML='';
   valid.forEach(r => {
-    const paceLabel = r.gFast && r.gSlow
-      ? `${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`
+    const paceLabel = r.gFast&&r.gSlow ? `${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`
       : r.gFast ? `${fmtTime(r.gFast)}+/mi` : `${fmtTime(r.avgPace)}/mi`;
-
-    const recSub = fixedRecSec === null
-      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace + recPaceOffsetSec)}/mi</div>`
+    const recSub = fixedRecSec===null
+      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace+recPaceOffsetSec)}/mi</div>`
       : `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
-
-    // Delta vs anchor
-    let deltaHtml = '';
-    if (r.idx !== 0) {
-      const diffAbs = Math.abs(r.diff);
-      if (diffAbs < 15) {
-        deltaHtml = `<div class="delta-row even">≈ same finish time as anchor</div>`;
-      } else {
-        const sign = r.diff > 0 ? '+' : '−';
-        const cls = r.diff > 0 ? 'over' : 'under';
-        const label = r.diff > 0 ? 'after anchor' : 'before anchor';
-        deltaHtml = `<div class="delta-row ${cls}">${sign}${fmtTime(diffAbs)} ${label}</div>`;
+    let deltaHtml='';
+    if (r.idx!==0) {
+      const diffAbs=Math.abs(r.diff);
+      if (diffAbs<15) deltaHtml=`<div class="delta-row even">≈ same finish time as anchor</div>`;
+      else {
+        const sign=r.diff>0?'+':'−', cls=r.diff>0?'over':'under', lbl=r.diff>0?'after anchor':'before anchor';
+        deltaHtml=`<div class="delta-row ${cls}">${sign}${fmtTime(diffAbs)} ${lbl}</div>`;
       }
     }
-
-    const openNote = r.gFast && !r.gSlow
-      ? `<div class="warn">Open-ended group — avg estimated at ${fmtTime(r.avgPace)}/mi</div>` : '';
-
+    const openNote = r.gFast&&!r.gSlow ? `<div class="warn">Open-ended group — avg estimated at ${fmtTime(r.avgPace)}/mi</div>` : '';
     const overrideBadge = r.isOverridden
       ? ` <span style="font-size:0.6rem;background:var(--green);color:#000;padding:2px 5px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">OVERRIDE</span>` : '';
-
-    const card = document.createElement('div');
-    card.className = 'result-card' + (r.isOverridden ? ' overridden-card' : '');
-    card.innerHTML = `
+    const card=document.createElement('div');
+    card.className='result-card'+(r.isOverridden?' overridden-card':'');
+    card.innerHTML=`
       <div class="rct">
         <div class="dot" style="background:${r.color}"></div>
         <div class="gname">${r.name}${overrideBadge}</div>
@@ -749,9 +875,9 @@ function calculate() {
       </div>
       <div class="rcb">
         <div class="stat">
-          <div class="sl">Reps${r.isOverridden ? '' : (r.idx > 0 ? ' (auto)' : '')}</div>
-          <div class="sv big${r.isOverridden ? ' overridden' : ''}">${r.reps}</div>
-          ${r.isOverridden ? `<div class="sub">auto would be ${r.autoReps}</div>` : ''}
+          <div class="sl">Reps${r.isOverridden?'':(r.idx>0?' (auto)':'')}</div>
+          <div class="sv big${r.isOverridden?' overridden':''}">${r.reps}</div>
+          ${r.isOverridden?`<div class="sub">auto would be ${r.autoReps}</div>`:''}
         </div>
         <div class="stat cycle-stat">
           <div class="sl">Cycle (rep + recovery)</div>
@@ -760,11 +886,11 @@ function calculate() {
             <span class="cplus">+</span>
             <span class="cv">${fmtTime(r.gRecSec)}</span>
             <span class="cplus">=</span>
-            <span class="cv ceq">${fmtTime(r.gRepSec + r.gRecSec)}</span>
+            <span class="cv ceq">${fmtTime(r.gRepSec+r.gRecSec)}</span>
           </div>
           ${recSub}
         </div>
-        <div class="stat" style="grid-column:span 2; border-top:1px solid var(--border); padding-top:0.6rem; margin-top:0.1rem;">
+        <div class="stat" style="grid-column:span 2;border-top:1px solid var(--border);padding-top:0.6rem;margin-top:0.1rem;">
           <div class="sl">Total Workout Time</div>
           <div class="sv grn">${fmtTime(r.totalSec)}</div>
         </div>
@@ -774,11 +900,116 @@ function calculate() {
     cards.appendChild(card);
   });
 
-  const el = document.getElementById('results');
-  el.style.display = 'block';
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const el=document.getElementById('results');
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
+// ─────────────────────────────────────────
+//  Optimizer
+// ─────────────────────────────────────────
+function runOptimizer() {
+  const anchorPace = parsePace(document.getElementById('optAnchorPace').value);
+  const anchorReps = parseInt(document.getElementById('optAnchorReps').value)||8;
+  const repDist    = parseFloat(document.getElementById('optRepDist').value)||800;
+  const distUnit   = document.getElementById('optDistUnit').value;
+  const minReps    = parseInt(document.getElementById('optMinReps').value)||4;
+  const maxReps    = parseInt(document.getElementById('optMaxReps').value)||10;
+
+  if (!anchorPace) return;
+
+  // Anchor's recovery (fixed or distance-based using anchor's pace)
+  let anchorFixedRec=null, optRecDistVal=null, optRecDistUnit=null;
+  if (optRecMode==='time') {
+    anchorFixedRec = (parseInt(document.getElementById('optRecMin').value)||0)*60
+                   + (parseInt(document.getElementById('optRecSec').value)||0);
+  } else {
+    optRecDistVal  = parseFloat(document.getElementById('optRecDist').value)||200;
+    optRecDistUnit = document.getElementById('optRecDistUnit').value;
+  }
+
+  const getRecSec = (pace) => anchorFixedRec !== null
+    ? anchorFixedRec
+    : repSec(pace + optRecPaceOffsetSec, optRecDistVal, optRecDistUnit);
+
+  // Anchor total time budget
+  const anchorRepTime = repSec(anchorPace, repDist, distUnit);
+  const anchorRecTime = getRecSec(anchorPace);
+  const budget = anchorReps * anchorRepTime + (anchorReps-1) * anchorRecTime;
+
+  // Context bar
+  const recLabel = anchorFixedRec!==null ? fmtTime(anchorFixedRec) : `${optRecDistVal}${optRecDistUnit} jog`;
+  document.getElementById('optContext').innerHTML = `
+    <div class="si"><div class="sl">Anchor Pace</div><div class="sv">${fmtTime(anchorPace)}/mi</div></div>
+    <div class="si"><div class="sl">Anchor Reps</div><div class="sv">${anchorReps} × ${repDist}${distUnit}</div></div>
+    <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
+    <div class="si"><div class="sl">Time Budget</div><div class="sv">${fmtTime(budget)}</div></div>
+  `;
+
+  // For each rep count, find max pace that fits within budget.
+  // Budget = reps * repTime + (reps-1) * recTime
+  // If fixed recovery:
+  //   budget = reps * repTime + (reps-1)*fixedRec
+  //   repTime = (budget - (reps-1)*fixedRec) / reps
+  //   pace = repTime / distMiles
+  // If distance recovery (recTime depends on pace):
+  //   recTime = (pace + offset) * recDistMi
+  //   budget = reps*(pace*repDistMi) + (reps-1)*(pace+offset)*recDistMi
+  //   budget = pace*(reps*repDistMi + (reps-1)*recDistMi) + (reps-1)*offset*recDistMi
+  //   pace = (budget - (reps-1)*offset*recDistMi) / (reps*repDistMi + (reps-1)*recDistMi)
+
+  const repDistMi = toMiles(repDist, distUnit);
+  const recDistMi = anchorFixedRec===null ? toMiles(optRecDistVal, optRecDistUnit) : 0;
+
+  const tbody = document.getElementById('optTableBody');
+  tbody.innerHTML='';
+
+  for (let reps = minReps; reps <= maxReps; reps++) {
+    let maxPaceSec;
+    if (anchorFixedRec !== null) {
+      const maxRepTimeSec = (budget - (reps-1)*anchorFixedRec) / reps;
+      maxPaceSec = maxRepTimeSec / repDistMi;
+    } else {
+      const numerator = budget - (reps-1)*optRecPaceOffsetSec*recDistMi;
+      const denominator = reps*repDistMi + (reps-1)*recDistMi;
+      maxPaceSec = numerator / denominator;
+    }
+
+    if (maxPaceSec <= 0) continue;
+
+    const isAnchorRow = reps === anchorReps;
+    const maxRepTimeSec = maxPaceSec * repDistMi;
+    const maxRecTimeSec = getRecSec(maxPaceSec);
+    const totalSec = reps*maxRepTimeSec + (reps-1)*maxRecTimeSec;
+    const cycleSec = maxRepTimeSec + maxRecTimeSec;
+
+    // Suggested range: ±30sec around max pace (faster end is max - ~1min, slower end is max pace itself)
+    const rangeFastSec = Math.max(60, maxPaceSec - 90);
+    const rangeSlowSec = maxPaceSec;
+    const rangeStr = `${fmtTime(rangeFastSec)} – ${fmtTime(rangeSlowSec)}/mi`;
+
+    const tr = document.createElement('tr');
+    if (isAnchorRow) tr.className = 'anchor-row';
+    tr.innerHTML = `
+      <td class="reps-cell">${reps}${isAnchorRow?' <span style="font-size:0.65rem;background:var(--accent);color:#000;padding:1px 5px;border-radius:3px;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">ANCHOR</span>':''}</td>
+      <td class="pace-cell">${fmtTime(maxPaceSec)}/mi</td>
+      <td class="pace-range-cell">${rangeStr}</td>
+      <td>${fmtTime(maxRepTimeSec)}</td>
+      <td class="cycle-cell">${fmtTime(cycleSec)}</td>
+      <td>${fmtTime(reps * maxRepTimeSec)}</td>
+      <td class="time-cell">${fmtTime(totalSec)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  const el=document.getElementById('optResults');
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─────────────────────────────────────────
+//  Init
+// ─────────────────────────────────────────
 renderGroups();
 </script>
 </body>
