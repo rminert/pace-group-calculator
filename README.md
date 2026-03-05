@@ -2,7 +2,7 @@
 
 A single-page tool for running coaches to build pace-based interval workouts where every group finishes at the same time.
 
-Built for Tuesday night track sessions where runners are split by pace rather than experience level. No install, no dependencies — just open `index.html` in any browser.
+Built for Tuesday night track sessions where runners are split by pace rather than experience level. No install, no dependencies — just open `rep-calculator.html` in any browser.
 
 ---
 
