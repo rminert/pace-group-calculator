@@ -40,193 +40,69 @@
   }
   .header h1 span { color: var(--accent); }
   .header p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; }
-
   .container { max-width: 940px; margin: 0 auto; }
 
   /* ── Tabs ── */
-  .tabs {
-    display: flex;
-    gap: 0;
-    margin-bottom: 2rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .tab-btn {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0.75rem 1rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.15s;
-    border-right: 1px solid var(--border);
-  }
-  .tab-btn:last-child { border-right: none; }
-  .tab-btn.active { background: var(--card); color: var(--accent); }
-  .tab-btn:hover:not(.active) { color: var(--text); }
+  .tabs { display:flex; margin-bottom:2rem; background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  .tab-btn { flex:1; background:transparent; border:none; color:var(--muted); cursor:pointer; padding:0.75rem 0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; transition:all 0.15s; border-right:1px solid var(--border); }
+  .tab-btn:last-child { border-right:none; }
+  .tab-btn.active { background:var(--card); color:var(--accent); }
+  .tab-btn:hover:not(.active) { color:var(--text); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
 
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  .section-header {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
+  .section-header { font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.6rem; }
   .section-header::after { content:''; flex:1; height:1px; background:var(--border); }
 
   /* ── Fields ── */
-  .setup-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: start;
-  }
-  .field {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-  }
-  .field label {
-    display: block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-  .field input, .field select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.6rem;
-    line-height: 1;
-  }
-  .field input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .field select option { background: var(--card); }
-  .field .unit { color: var(--muted); font-size: 1rem; font-weight: 400; margin-left: 4px; }
-  .field-inline { display: flex; align-items: baseline; gap: 0.25rem; }
+  .setup-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; align-items:start; }
+  .field { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; }
+  .field label { display:block; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; }
+  .field input, .field select { background:transparent; border:none; outline:none; color:var(--text); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.6rem; line-height:1; }
+  .field input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
+  .field select option { background:var(--card); }
+  .field .unit { color:var(--muted); font-size:1rem; font-weight:400; margin-left:4px; }
+  .field-inline { display:flex; align-items:baseline; gap:0.25rem; }
 
   /* ── Recovery card ── */
-  .recovery-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    grid-column: span 2;
-  }
-  .recovery-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-  }
-  .recovery-top label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .toggle-group {
-    display: flex;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .toggle-btn {
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 5px 14px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.15s;
-  }
-  .toggle-btn.active { background: var(--accent); color: #000; }
-  .rec-inputs { display: flex; align-items: baseline; gap: 0.35rem; flex-wrap: wrap; }
-  .rec-inputs input {
-    background: transparent; border: none; outline: none;
-    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: 1.6rem; width: 70px;
-  }
-  .rec-inputs input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .rec-inputs select {
-    background: transparent; border: none; outline: none;
-    color: var(--text); font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: 1.4rem; cursor: pointer;
-  }
-  .rec-inputs select option { background: var(--card); }
-  .rec-inputs .unit { color: var(--muted); font-size: 1rem; }
-  .rec-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
-  .pace-offset-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.65rem; flex-wrap: wrap; }
-  .pace-offset-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-  .pace-offset-ctrl { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .offset-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; padding: 4px 12px; font-size: 1rem; font-weight: 700; transition: all 0.15s; line-height: 1; }
-  .offset-btn:hover { background: var(--border); color: var(--text); }
-  .offset-display { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--accent); padding: 4px 10px; white-space: nowrap; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+  .recovery-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; grid-column:span 2; }
+  .recovery-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; }
+  .recovery-top label { font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); }
+  .toggle-group { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .toggle-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:5px 14px; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.15s; }
+  .toggle-btn.active { background:var(--accent); color:#000; }
+  .rec-inputs { display:flex; align-items:baseline; gap:0.35rem; flex-wrap:wrap; }
+  .rec-inputs input { background:transparent; border:none; outline:none; color:var(--text); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.6rem; width:70px; }
+  .rec-inputs input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
+  .rec-inputs select { background:transparent; border:none; outline:none; color:var(--text); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.4rem; cursor:pointer; }
+  .rec-inputs select option { background:var(--card); }
+  .rec-inputs .unit { color:var(--muted); font-size:1rem; }
+  .pace-offset-row { display:flex; align-items:center; gap:0.75rem; margin-top:0.65rem; flex-wrap:wrap; }
+  .pace-offset-label { font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+  .pace-offset-ctrl { display:flex; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .offset-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:4px 12px; font-size:1rem; font-weight:700; transition:all 0.15s; line-height:1; }
+  .offset-btn:hover { background:var(--border); color:var(--text); }
+  .offset-display { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; color:var(--accent); padding:4px 10px; white-space:nowrap; border-left:1px solid var(--border); border-right:1px solid var(--border); }
 
   /* ── Pace Groups ── */
-  .pace-groups { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
-  .pace-row {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: 2fr 1.3fr 1.3fr 1.3fr auto;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .pace-row.anchor { border-color: var(--accent); }
-  .pace-row:focus-within { border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
-  .pc { padding: 0.85rem 1rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-  .pc:last-child { border-right: none; }
-  .pc label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; font-family: 'Barlow Condensed', sans-serif; white-space: nowrap; }
-  .pc input { background: transparent; border: none; outline: none; color: var(--text); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; width: 100%; }
-  .pc input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .pc input.reps-input { font-size: 1.4rem; color: var(--accent); width: 70px; }
-  .pc input.reps-input.overridden { color: var(--green); }
-  .pc.namecell { flex-direction: row; align-items: center; }
+  .pace-groups { display:grid; gap:0.6rem; margin-bottom:1rem; }
+  .pace-row { background:var(--card); border:1px solid var(--border); border-radius:10px; display:grid; grid-template-columns:2fr 1.3fr 1.3fr auto; overflow:hidden; transition:border-color 0.2s; }
+  .pace-row.anchor { border-color:var(--accent); }
+  .pace-row:focus-within { border-color:color-mix(in srgb, var(--accent) 60%, transparent); }
+  .pc { padding:0.85rem 1rem; border-right:1px solid var(--border); display:flex; flex-direction:column; justify-content:center; }
+  .pc:last-child { border-right:none; }
+  .pc label { font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.25rem; font-family:'Barlow Condensed',sans-serif; white-space:nowrap; }
+  .pc input { background:transparent; border:none; outline:none; color:var(--text); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.1rem; width:100%; }
+  .pc input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
+  .pc.namecell { flex-direction:row; align-items:center; }
   .cdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-right:8px; }
   .namecell .inner { display:flex; flex-direction:column; }
   .anchor-badge { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:2px 5px; border-radius:3px; margin-top:4px; width:fit-content; }
   .remove-btn { background:none; border:none; color:var(--muted); cursor:pointer; padding:0 1rem; font-size:1rem; transition:color 0.15s; display:flex; align-items:center; justify-content:center; }
   .remove-btn:hover { color:var(--red); }
   .remove-btn:disabled { opacity:0.2; cursor:default; }
-  .groups-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; margin-top: -0.25rem; }
-  .groups-note strong { color: var(--accent); }
-
-  /* ── Reps toggle ── */
-  .reps-toggle { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; width:fit-content; margin-bottom:0.4rem; }
-  .reps-toggle-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:3px 10px; font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.15s; line-height:1.4; }
-  .reps-toggle-btn.on { background:var(--green); color:#000; }
+  .groups-note { font-size:0.78rem; color:var(--muted); margin-bottom:1rem; margin-top:-0.25rem; }
+  .groups-note strong { color:var(--accent); }
 
   .add-btn { background:transparent; border:1px dashed var(--border); border-radius:10px; color:var(--muted); cursor:pointer; width:100%; padding:0.75rem; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.2s; margin-bottom:1.5rem; }
   .add-btn:hover { border-color:var(--accent); color:var(--accent); }
@@ -235,7 +111,7 @@
   .calc-btn:hover { background:#ffc13d; }
   .calc-btn:active { transform:scale(0.99); }
 
-  /* ── Results ── */
+  /* ── Single-set results ── */
   #results { display:none; }
   .summary-bar { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1rem; }
   .si { display:flex; flex-direction:column; gap:0.15rem; }
@@ -269,136 +145,315 @@
   .print-btn { background:transparent; border:1px solid var(--border); border-radius:10px; color:var(--muted); cursor:pointer; padding:0.7rem 1.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.2s; }
   .print-btn:hover { border-color:var(--muted); color:var(--text); }
 
-  /* ── Optimizer Tab ── */
-  .opt-setup-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: start;
-  }
+  /* ── Opt note ── */
+  .opt-note { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.9rem 1.1rem; margin-bottom:1.75rem; font-size:0.82rem; color:var(--muted); line-height:1.5; }
+  .opt-note strong { color:var(--text); }
 
-  .opt-note {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.9rem 1.1rem;
-  }
-  .opt-note strong { color: var(--text); }
+  /* ── Reps toggle (single-set) ── */
+  .reps-toggle { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; width:fit-content; }
+  .reps-toggle-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:3px 10px; font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.15s; line-height:1.4; }
+  .reps-toggle-btn.on { background:var(--green); color:#000; }
+  .pc input.reps-input { font-size:1.4rem; color:var(--accent); width:70px; }
+  .pc input.reps-input.overridden { color:var(--green); }
 
-  #optResults { display: none; margin-top: 0.5rem; }
+  /* ── Optimizer ── */
+  .opt-setup-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-bottom:1.5rem; align-items:start; }
+  #optResults { display:none; margin-top:0.5rem; }
+  .opt-table-wrap { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:1.5rem; }
+  .opt-table { width:100%; border-collapse:collapse; }
+  .opt-table thead tr { background:var(--surface); border-bottom:1px solid var(--border); }
+  .opt-table th { font-family:'Barlow Condensed',sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); padding:0.7rem 1.1rem; text-align:left; }
+  .opt-table td { font-family:'Barlow Condensed',sans-serif; font-weight:700; padding:0.75rem 1.1rem; border-bottom:1px solid var(--border); font-size:1rem; }
+  .opt-table tr:last-child td { border-bottom:none; }
+  .opt-table tr.anchor-row td { color:var(--accent); }
+  .opt-table tr.anchor-row { background:rgba(240,165,0,0.05); }
+  .opt-table .reps-cell { font-size:1.3rem; }
+  .opt-table .time-cell { color:var(--green); }
+  .opt-table .cycle-cell { color:var(--muted); font-size:0.9rem; }
+  .opt-context { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1rem; font-family:'Barlow Condensed',sans-serif; }
 
-  .opt-table-wrap {
+  /* ══════════════════════════════════
+     MULTI-SET WORKOUT BUILDER
+  ══════════════════════════════════ */
+
+  /* Set card */
+  .set-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
+    margin-bottom: 1rem;
     overflow: hidden;
-    margin-bottom: 1.5rem;
   }
-
-  .opt-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .opt-table thead tr {
+  .set-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.1rem;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
   }
+  .set-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .set-title-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .set-title-input::placeholder { color: var(--muted); }
+  .set-remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .set-remove-btn:hover { color: var(--red); }
 
-  .opt-table th {
+  .set-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .set-field {
+    padding: 0.9rem 1.1rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .set-field:nth-child(even) { border-right: none; }
+  .set-field:nth-last-child(-n+2) { border-bottom: none; }
+
+  .set-field label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .set-field-row { display: flex; align-items: baseline; gap: 0.3rem; flex-wrap: wrap; }
+  .set-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+  }
+  .set-input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .set-input.accent { color: var(--accent); }
+  .set-select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .set-select option { background: var(--card); }
+  .set-unit { color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; }
+
+  /* Recovery toggle inside set card */
+  .set-rec-toggle { display:flex; background:var(--bg); border:1px solid var(--border); border-radius:5px; overflow:hidden; margin-bottom:0.5rem; width:fit-content; }
+  .set-rec-btn { background:transparent; border:none; color:var(--muted); cursor:pointer; padding:3px 10px; font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; transition:all 0.15s; }
+  .set-rec-btn.active { background:var(--accent); color:#000; }
+
+  /* Anchor reps row */
+  .set-anchor-row {
+    grid-column: span 2;
+    padding: 0.75rem 1.1rem;
+    border-top: 1px solid var(--border);
+    background: rgba(240,165,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .set-anchor-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
-    padding: 0.7rem 1.1rem;
-    text-align: left;
+    color: var(--accent);
   }
-
-  .opt-table td {
+  .set-anchor-val {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    padding: 0.75rem 1.1rem;
-    border-bottom: 1px solid var(--border);
-    font-size: 1rem;
-  }
-
-  .opt-table tr:last-child td { border-bottom: none; }
-
-  .opt-table tr.anchor-row td { color: var(--accent); }
-  .opt-table tr.anchor-row { background: rgba(240,165,0,0.05); }
-
-  .opt-table .reps-cell {
+    font-weight: 800;
     font-size: 1.3rem;
-    color: var(--text);
+    color: var(--accent);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 55px;
   }
-
-  .opt-table .pace-cell { color: var(--text); }
-  .opt-table .pace-range-cell { color: var(--muted); }
-  .opt-table .time-cell { color: var(--green); }
-  .opt-table .cycle-cell { color: var(--muted); font-size: 0.9rem; }
-
-  .opt-context {
+  .set-anchor-val[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .set-anchor-note {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .set-anchor-auto-tag {
+    display: inline-block;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+    color: var(--muted);
     font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .set-anchor-auto-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Multi-set results */
+  #msResults { display: none; }
+
+  .ms-set-block {
+    margin-bottom: 1.75rem;
   }
 
-  @media (max-width: 580px) {
-    .setup-grid { grid-template-columns: 1fr; }
-    .recovery-card { grid-column: span 1; }
-    .pace-row { grid-template-columns: 1fr 1fr; }
+  .ms-set-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ms-set-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .ms-table-wrap { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  .ms-table { width:100%; border-collapse:collapse; }
+  .ms-table thead tr { background:var(--surface); border-bottom:1px solid var(--border); }
+  .ms-table th { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); padding:0.6rem 1rem; text-align:left; white-space:nowrap; }
+  .ms-table td { font-family:'Barlow Condensed',sans-serif; font-weight:700; padding:0.65rem 1rem; border-bottom:1px solid var(--border); font-size:0.95rem; }
+  .ms-table tr:last-child td { border-bottom:none; }
+  .ms-table tr.ms-anchor-row { background:rgba(240,165,0,0.04); }
+  .ms-table .td-group { display:flex; align-items:center; gap:0.5rem; }
+  .ms-table .td-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .ms-table .td-reps { color:var(--accent); font-size:1.1rem; }
+  .ms-table .td-reps.override { color:var(--green); }
+  .ms-table .td-time { color:var(--green); }
+  .ms-table .td-cycle { color:var(--muted); font-size:0.85rem; }
+  .ms-table .td-delta { font-size:0.78rem; }
+  .ms-table .td-delta.over { color:var(--red); }
+  .ms-table .td-delta.under { color:var(--green); }
+  .ms-table .td-delta.even { color:var(--muted); }
+
+  /* Grand total table */
+  .ms-grand-wrap {
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .ms-grand-header {
+    background: rgba(240,165,0,0.08);
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ms-grand-table { width:100%; border-collapse:collapse; }
+  .ms-grand-table th { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); padding:0.6rem 1rem; text-align:left; background:var(--surface); border-bottom:1px solid var(--border); }
+  .ms-grand-table td { font-family:'Barlow Condensed',sans-serif; font-weight:700; padding:0.7rem 1rem; border-bottom:1px solid var(--border); font-size:1rem; }
+  .ms-grand-table tr:last-child td { border-bottom:none; }
+  .ms-grand-table .td-total { color:var(--accent); font-size:1.3rem; }
+  .ms-grand-table .td-reps-sum { color:var(--text); font-size:1rem; }
+
+  @media (max-width:600px) {
+    .setup-grid { grid-template-columns:1fr; }
+    .recovery-card { grid-column:span 1; }
+    .pace-row { grid-template-columns:1fr 1fr; }
     .pc { border-right:none !important; border-bottom:1px solid var(--border); }
     .pc:nth-child(odd) { border-right:1px solid var(--border) !important; }
-    .tabs { flex-direction: column; }
-    .tab-btn { border-right: none; border-bottom: 1px solid var(--border); }
-    .tab-btn:last-child { border-bottom: none; }
+    .set-body { grid-template-columns:1fr; }
+    .set-field { border-right:none !important; }
+    .set-field:nth-last-child(-n+2) { border-bottom:1px solid var(--border); }
+    .set-field:last-child { border-bottom:none; }
+    .set-anchor-row { grid-column:span 1; }
+    .tabs { flex-direction:column; }
+    .tab-btn { border-right:none; border-bottom:1px solid var(--border); }
+    .tab-btn:last-child { border-bottom:none; }
   }
 
   @media print {
     body { background:white; color:black; padding:1rem; }
-    .calc-btn,.print-btn,.add-btn,.remove-btn,.toggle-group,.tabs { display:none; }
+    .tabs,.calc-btn,.print-btn,.add-btn,.remove-btn,.set-remove-btn,.toggle-group,.set-rec-toggle { display:none !important; }
     .tab-panel { display:block !important; }
-    .field,.pace-row,.result-card,.summary-bar,.recovery-card,.opt-table-wrap,.opt-context { background:white !important; border-color:#ccc !important; }
+    .field,.pace-row,.result-card,.summary-bar,.recovery-card,.opt-table-wrap,.opt-context,.set-card,.ms-table-wrap,.ms-grand-wrap { background:white !important; border-color:#ccc !important; }
     .sv,.gname,.sl,.section-header,.header h1,.header p { color:black !important; }
-    .sv.big { color:#c07000 !important; }
-    .sv.grn,.time-cell { color:#006040 !important; }
-    .plabel,.rec-note,.groups-note,.opt-note { color:#555 !important; }
-    #results,#optResults { display:block !important; }
+    .sv.big,.td-reps,.td-total,.set-label,.ms-set-title { color:#c07000 !important; }
+    .sv.grn,.td-time { color:#006040 !important; }
+    #results,#msResults,#optResults { display:block !important; }
     .anchor-badge { background:#c07000 !important; }
-    .opt-table tr.anchor-row td { color:#c07000 !important; }
   }
 </style>
 </head>
 <body>
-
 <div class="container">
+
   <div class="header">
     <h1>Tuesday Night <span>Rep Calculator</span></h1>
     <p>Build workouts where every pace group finishes at the same time.</p>
   </div>
 
-  <!-- Tabs -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('calc')">⚡ Rep Calculator</button>
+    <button class="tab-btn" onclick="switchTab('multi')">🪜 Multi-Set Builder</button>
     <button class="tab-btn" onclick="switchTab('opt')">🎯 Pace Window Optimizer</button>
   </div>
 
-  <!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════
        TAB 1 — REP CALCULATOR
-  ══════════════════════════════════════════ -->
+  ══════════════════════════════ -->
   <div class="tab-panel active" id="tab-calc">
 
     <div class="opt-note">
@@ -411,14 +466,9 @@
         <label>Rep Distance</label>
         <div class="field-inline">
           <input type="number" id="repDist" value="400" min="50" step="50" style="width:80px">
-          <select id="distUnit">
-            <option value="m">m</option>
-            <option value="mi">mi</option>
-            <option value="km">km</option>
-          </select>
+          <select id="distUnit"><option value="m">m</option><option value="mi">mi</option><option value="km">km</option></select>
         </div>
       </div>
-
       <div class="recovery-card">
         <div class="recovery-top">
           <label>Recovery Between Reps</label>
@@ -436,11 +486,7 @@
         <div id="recDistUI" style="display:none">
           <div class="rec-inputs">
             <input type="number" id="recDist" value="200" min="10" step="10" style="width:80px">
-            <select id="recDistUnit">
-              <option value="m">m</option>
-              <option value="mi">mi</option>
-              <option value="km">km</option>
-            </select>
+            <select id="recDistUnit"><option value="m">m</option><option value="mi">mi</option><option value="km">km</option></select>
           </div>
           <div class="pace-offset-row">
             <span class="pace-offset-label">Recovery pace</span>
@@ -455,7 +501,7 @@
     </div>
 
     <div class="section-header">Pace Groups</div>
-    <p class="groups-note">The <strong>first group</strong> is your anchor — set its reps. Others calculate automatically, but you can toggle Manual to override and see the time impact.</p>
+    <p class="groups-note">The <strong>first group</strong> is your anchor — set its reps. Others calculate automatically, but you can toggle Manual to override.</p>
     <div class="pace-groups" id="paceGroups"></div>
     <button class="add-btn" onclick="addGroup()">+ Add Pace Group</button>
     <button class="calc-btn" onclick="calculate()">Calculate Reps →</button>
@@ -466,43 +512,67 @@
       <div class="result-cards" id="resultCards"></div>
       <button class="print-btn" onclick="window.print()">🖨 Print Coaching Sheet</button>
     </div>
+  </div>
 
-  </div><!-- /tab-calc -->
+  <!-- ══════════════════════════════
+       TAB 2 — MULTI-SET BUILDER
+  ══════════════════════════════ -->
+  <div class="tab-panel" id="tab-multi">
 
-  <!-- ══════════════════════════════════════════
-       TAB 2 — PACE WINDOW OPTIMIZER
-  ══════════════════════════════════════════ -->
+    <div class="opt-note">
+      Build a multi-set workout like a ladder or pyramid. Each set has its own <strong>rep distance, recovery, and anchor rep count</strong>. The anchor rep count is auto-suggested based on distance — you can override it. All other groups scale to match the anchor's finish time for that set. Every group is guaranteed at least one rep per set.
+    </div>
+
+    <div class="section-header">Pace Groups</div>
+    <p class="groups-note">Groups are shared across all sets. The <strong>first group</strong> is the anchor for each set.</p>
+    <div class="pace-groups" id="msPaceGroups"></div>
+    <button class="add-btn" onclick="addMsGroup()">+ Add Pace Group</button>
+
+    <div class="section-header">Sets</div>
+    <div id="setsContainer"></div>
+    <button class="add-btn" id="addSetBtn" onclick="addSet()">+ Add Set</button>
+
+    <button class="calc-btn" onclick="calculateMulti()">Calculate Workout →</button>
+
+    <div id="msResults">
+      <div class="section-header">Workout Results</div>
+      <div id="msSetResults"></div>
+      <div class="section-header">Overall Summary</div>
+      <div class="ms-grand-wrap">
+        <div class="ms-grand-header">🏁 Grand Total by Group</div>
+        <table class="ms-grand-table">
+          <thead><tr>
+            <th>Group</th><th>Pace Range</th><th>Total Reps</th><th>Total Time</th>
+          </tr></thead>
+          <tbody id="msGrandBody"></tbody>
+        </table>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨 Print Coaching Sheet</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       TAB 3 — OPTIMIZER
+  ══════════════════════════════ -->
   <div class="tab-panel" id="tab-opt">
-
     <div class="opt-note">
       Given your <strong>anchor group's pace and rep count</strong>, this shows the maximum average pace a runner can be at to complete each rep count within the same time budget — so you can see exactly what pace window maps to 5 reps, 6 reps, 7 reps, etc.
     </div>
-
     <div class="section-header">Anchor Group</div>
     <div class="opt-setup-grid">
       <div class="field">
         <label>Anchor Avg Pace (/mi)</label>
-        <div class="field-inline">
-          <input type="text" id="optAnchorPace" value="7:30" style="width:80px">
-          <span class="unit">/mi</span>
-        </div>
+        <div class="field-inline"><input type="text" id="optAnchorPace" value="7:30" style="width:80px"><span class="unit">/mi</span></div>
       </div>
       <div class="field">
         <label>Anchor Reps</label>
-        <div class="field-inline">
-          <input type="number" id="optAnchorReps" value="8" min="1" max="40" style="width:60px">
-          <span class="unit">reps</span>
-        </div>
+        <div class="field-inline"><input type="number" id="optAnchorReps" value="8" min="1" max="40" style="width:60px"><span class="unit">reps</span></div>
       </div>
       <div class="field">
         <label>Rep Distance</label>
         <div class="field-inline">
           <input type="number" id="optRepDist" value="800" min="50" step="50" style="width:80px">
-          <select id="optDistUnit">
-            <option value="m">m</option>
-            <option value="mi">mi</option>
-            <option value="km">km</option>
-          </select>
+          <select id="optDistUnit"><option value="m">m</option><option value="mi">mi</option><option value="km">km</option></select>
         </div>
       </div>
       <div class="field">
@@ -515,7 +585,6 @@
         </div>
       </div>
     </div>
-
     <div class="section-header">Recovery</div>
     <div class="opt-setup-grid" style="margin-bottom:1.5rem">
       <div class="recovery-card" style="grid-column:unset">
@@ -535,11 +604,7 @@
         <div id="optRecDistUI" style="display:none">
           <div class="rec-inputs">
             <input type="number" id="optRecDist" value="200" min="10" step="10" style="width:80px">
-            <select id="optRecDistUnit">
-              <option value="m">m</option>
-              <option value="mi">mi</option>
-              <option value="km">km</option>
-            </select>
+            <select id="optRecDistUnit"><option value="m">m</option><option value="mi">mi</option><option value="km">km</option></select>
           </div>
           <div class="pace-offset-row">
             <span class="pace-offset-label">Recovery pace</span>
@@ -552,38 +617,27 @@
         </div>
       </div>
     </div>
-
     <button class="calc-btn" onclick="runOptimizer()">Generate Pace Windows →</button>
-
     <div id="optResults">
       <div class="section-header">Pace Windows by Rep Count</div>
       <div class="opt-context" id="optContext"></div>
       <div class="opt-table-wrap">
         <table class="opt-table">
-          <thead>
-            <tr>
-              <th>Reps</th>
-              <th>Max Avg Pace</th>
-              <th>Suggested Range</th>
-              <th>Rep Time</th>
-              <th>Cycle Time</th>
-              <th>Total Rep Time</th>
-              <th>Total Time</th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th>Reps</th><th>Max Avg Pace</th><th>Suggested Range</th><th>Rep Time</th><th>Cycle Time</th><th>Total Rep Time</th><th>Total Time</th>
+          </tr></thead>
           <tbody id="optTableBody"></tbody>
         </table>
       </div>
       <button class="print-btn" onclick="window.print()">🖨 Print</button>
     </div>
-
-  </div><!-- /tab-opt -->
+  </div>
 
 </div><!-- /container -->
 
 <script>
 // ─────────────────────────────────────────
-//  Shared state
+//  Constants & shared state
 // ─────────────────────────────────────────
 const COLORS = ['#f0a500','#3ecf8e','#5b8af5','#e05c2a','#b06cf5','#3bbfcf','#f05a7e','#e8d060'];
 let recMode = 'time';
@@ -595,313 +649,558 @@ let optRecPaceOffsetSec = 120;
 //  Tab switching
 // ─────────────────────────────────────────
 function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (i===0&&tab==='calc')||(i===1&&tab==='opt')));
-  document.getElementById('tab-calc').classList.toggle('active', tab==='calc');
-  document.getElementById('tab-opt').classList.toggle('active', tab==='opt');
-}
-
-// ─────────────────────────────────────────
-//  Recovery mode — calculator tab
-// ─────────────────────────────────────────
-function setRecMode(mode) {
-  recMode = mode;
-  document.getElementById('btnTime').classList.toggle('active', mode==='time');
-  document.getElementById('btnDist').classList.toggle('active', mode==='dist');
-  document.getElementById('recTimeUI').style.display = mode==='time' ? 'flex' : 'none';
-  document.getElementById('recDistUI').style.display = mode==='dist' ? 'block' : 'none';
-}
-
-function changeOffset(delta) {
-  recPaceOffsetSec = Math.max(0, Math.min(480, recPaceOffsetSec + delta));
-  document.getElementById('offsetDisplay').textContent = offsetLabel(recPaceOffsetSec);
-}
-
-// ─────────────────────────────────────────
-//  Recovery mode — optimizer tab
-// ─────────────────────────────────────────
-function setOptRecMode(mode) {
-  optRecMode = mode;
-  document.getElementById('optBtnTime').classList.toggle('active', mode==='time');
-  document.getElementById('optBtnDist').classList.toggle('active', mode==='dist');
-  document.getElementById('optRecTimeUI').style.display = mode==='time' ? 'flex' : 'none';
-  document.getElementById('optRecDistUI').style.display = mode==='dist' ? 'block' : 'none';
-}
-
-function changeOptOffset(delta) {
-  optRecPaceOffsetSec = Math.max(0, Math.min(480, optRecPaceOffsetSec + delta));
-  document.getElementById('optOffsetDisplay').textContent = offsetLabel(optRecPaceOffsetSec);
-}
-
-function offsetLabel(sec) {
-  if (sec === 0) return 'interval pace';
-  const m = Math.floor(sec/60), s = sec%60;
-  return `interval + ${m}:${String(s).padStart(2,'0')}/mi`;
+  const tabs = ['calc','multi','opt'];
+  tabs.forEach((t,i) => {
+    document.querySelectorAll('.tab-btn')[i].classList.toggle('active', t===tab);
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
 }
 
 // ─────────────────────────────────────────
 //  Utilities
 // ─────────────────────────────────────────
 function parsePace(str) {
-  if (!str || !str.trim()) return null;
-  const p = str.trim().split(':');
-  if (p.length === 2) {
-    const m = parseInt(p[0]), s = parseInt(p[1]);
-    if (isNaN(m)||isNaN(s)) return null;
-    return m*60+s;
-  }
-  const n = parseFloat(str);
-  return isNaN(n) ? null : n*60;
+  if (!str||!str.trim()) return null;
+  const p=str.trim().split(':');
+  if (p.length===2) { const m=parseInt(p[0]),s=parseInt(p[1]); if(isNaN(m)||isNaN(s)) return null; return m*60+s; }
+  const n=parseFloat(str); return isNaN(n)?null:n*60;
 }
-
-function secsToPaceStr(sec) {
-  const s = Math.round(sec);
-  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
-}
-
-function fmtTime(sec) {
-  if (!isFinite(sec)||sec<0) return '—';
-  const s = Math.round(sec);
-  return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
-}
-
-function toMiles(dist, unit) {
-  if (unit==='mi') return dist;
-  if (unit==='km') return dist/1.60934;
-  return dist/1609.34;
-}
-
-function repSec(paceSec_mi, dist, unit) {
-  return paceSec_mi * toMiles(dist, unit);
-}
+function secsToPaceStr(sec) { const s=Math.round(sec); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; }
+function fmtTime(sec) { if(!isFinite(sec)||sec<0) return '—'; const s=Math.round(sec); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; }
+function toMiles(dist,unit) { if(unit==='mi') return dist; if(unit==='km') return dist/1.60934; return dist/1609.34; }
+function repSec(pace,dist,unit) { return pace*toMiles(dist,unit); }
+function offsetLabel(sec) { if(sec===0) return 'interval pace'; const m=Math.floor(sec/60),s=sec%60; return `interval + ${m}:${String(s).padStart(2,'0')}/mi`; }
 
 // ─────────────────────────────────────────
-//  Pace Groups (calculator tab)
+//  Recovery toggles
+// ─────────────────────────────────────────
+function setRecMode(mode) {
+  recMode=mode;
+  document.getElementById('btnTime').classList.toggle('active',mode==='time');
+  document.getElementById('btnDist').classList.toggle('active',mode==='dist');
+  document.getElementById('recTimeUI').style.display=mode==='time'?'flex':'none';
+  document.getElementById('recDistUI').style.display=mode==='dist'?'block':'none';
+}
+function changeOffset(d) { recPaceOffsetSec=Math.max(0,Math.min(480,recPaceOffsetSec+d)); document.getElementById('offsetDisplay').textContent=offsetLabel(recPaceOffsetSec); }
+function setOptRecMode(mode) {
+  optRecMode=mode;
+  document.getElementById('optBtnTime').classList.toggle('active',mode==='time');
+  document.getElementById('optBtnDist').classList.toggle('active',mode==='dist');
+  document.getElementById('optRecTimeUI').style.display=mode==='time'?'flex':'none';
+  document.getElementById('optRecDistUI').style.display=mode==='dist'?'block':'none';
+}
+function changeOptOffset(d) { optRecPaceOffsetSec=Math.max(0,Math.min(480,optRecPaceOffsetSec+d)); document.getElementById('optOffsetDisplay').textContent=offsetLabel(optRecPaceOffsetSec); }
+
+// ─────────────────────────────────────────
+//  Single-set pace groups
 // ─────────────────────────────────────────
 const defaultGroups = [
-  { name:'Group A', fastPace:'6:00', slowPace:'7:59', anchorReps:8, overrideReps:null },
-  { name:'Group B', fastPace:'8:00', slowPace:'9:59', anchorReps:null, overrideReps:null },
-  { name:'Group C', fastPace:'10:00', slowPace:'11:59', anchorReps:null, overrideReps:null },
-  { name:'Group D', fastPace:'12:00', slowPace:'', anchorReps:null, overrideReps:null },
+  {name:'Group A',fastPace:'6:00',slowPace:'7:59',anchorReps:8,overrideReps:null},
+  {name:'Group B',fastPace:'8:00',slowPace:'9:59',anchorReps:null,overrideReps:null},
+  {name:'Group C',fastPace:'10:00',slowPace:'11:59',anchorReps:null,overrideReps:null},
+  {name:'Group D',fastPace:'12:00',slowPace:'',anchorReps:null,overrideReps:null},
 ];
-let groups = defaultGroups.map((g,i) => ({...g, id:i, color:COLORS[i]}));
+let groups = defaultGroups.map((g,i)=>({...g,id:i,color:COLORS[i]}));
 let nextId = groups.length;
 
 function cascadeFromSlowPace(idx) {
-  const next = groups[idx+1];
-  if (!next) { renderGroups(); return; }
-  const prevSlow = parsePace(groups[idx].slowPace);
-  if (prevSlow !== null) next.fastPace = secsToPaceStr(prevSlow+1);
+  const next=groups[idx+1]; if(!next){renderGroups();return;}
+  const ps=parsePace(groups[idx].slowPace); if(ps!==null) next.fastPace=secsToPaceStr(ps+1);
   renderGroups();
 }
 
 function renderGroups() {
-  const c = document.getElementById('paceGroups');
-  c.innerHTML = '';
-  groups.forEach((g, idx) => {
-    const isAnchor = idx===0;
-    const isManual = !isAnchor && g.overrideReps !== null;
-    const row = document.createElement('div');
-    row.className = 'pace-row'+(isAnchor?' anchor':'');
-    row.innerHTML = `
-      <div class="pc namecell">
-        <span class="cdot" style="background:${g.color}"></span>
-        <div class="inner">
-          <label>Group Name</label>
-          <input type="text" value="${g.name}" oninput="upd(${g.id},'name',this.value)">
-          ${isAnchor ? '<span class="anchor-badge">Anchor</span>' : ''}
-        </div>
-      </div>
-      <div class="pc">
-        <label>Fastest Pace (/mi)</label>
+  const c=document.getElementById('paceGroups'); c.innerHTML='';
+  groups.forEach((g,idx)=>{
+    const isAnchor=idx===0, isManual=!isAnchor&&g.overrideReps!==null;
+    const row=document.createElement('div'); row.className='pace-row'+(isAnchor?' anchor':'');
+    row.innerHTML=`
+      <div class="pc namecell"><span class="cdot" style="background:${g.color}"></span><div class="inner">
+        <label>Group Name</label><input type="text" value="${g.name}" oninput="upd(${g.id},'name',this.value)">
+        ${isAnchor?'<span class="anchor-badge">Anchor</span>':''}
+      </div></div>
+      <div class="pc"><label>Fastest Pace (/mi)</label>
         <input type="text" value="${g.fastPace}" oninput="upd(${g.id},'fastPace',this.value)" placeholder="6:00"
           ${idx>0?'readonly style="color:var(--muted);cursor:default"':''}>
       </div>
-      <div class="pc">
-        <label>Slowest Pace (/mi)</label>
-        <input type="text" value="${g.slowPace}"
-          oninput="upd(${g.id},'slowPace',this.value)"
-          onblur="cascadeFromSlowPace(${idx})"
-          placeholder="open-ended">
+      <div class="pc"><label>Slowest Pace (/mi)</label>
+        <input type="text" value="${g.slowPace}" oninput="upd(${g.id},'slowPace',this.value)" onblur="cascadeFromSlowPace(${idx})" placeholder="open-ended">
       </div>
-      <div class="pc">
-        <label>Reps</label>
-        ${isAnchor ? `
-          <input type="number" class="reps-input" value="${g.anchorReps||8}" min="1" max="40"
-            oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">
-          <div style="font-size:0.6rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:2px;">anchor</div>
-        ` : `
-          <div class="reps-toggle">
+      <div class="pc"><label>Reps</label>
+        ${isAnchor?`<input type="number" class="reps-input" value="${g.anchorReps||8}" min="1" max="40" oninput="upd(${g.id},'anchorReps',parseInt(this.value)||1)">
+          <div style="font-size:0.6rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:2px;">anchor</div>`
+        :`<div class="reps-toggle">
             <button class="reps-toggle-btn ${!isManual?'on':''}" onclick="clearOverride(${g.id})">Auto</button>
             <button class="reps-toggle-btn ${isManual?'on':''}" onclick="setManual(${g.id})">Manual</button>
           </div>
-          ${isManual ? `<input type="number" class="reps-input overridden"
-            value="${g.overrideReps}" min="1" max="40" style="margin-top:2px;"
-            oninput="updOverride(${g.id},this.value)">` : ''}
-        `}
+          ${isManual?`<input type="number" class="reps-input overridden" value="${g.overrideReps}" min="1" max="40" style="margin-top:2px;" oninput="updOverride(${g.id},this.value)">`:''}`}
       </div>
-      <button class="remove-btn" onclick="removeGroup(${g.id})" ${groups.length<=1?'disabled':''} title="Remove">✕</button>
-    `;
+      <button class="remove-btn" onclick="removeGroup(${g.id})" ${groups.length<=1?'disabled':''}>✕</button>`;
     c.appendChild(row);
   });
 }
 
-function upd(id, key, val) {
-  const g = groups.find(g=>g.id===id);
-  if (g) g[key]=val;
+function upd(id,key,val){const g=groups.find(g=>g.id===id);if(g)g[key]=val;}
+function updOverride(id,val){const g=groups.find(g=>g.id===id);if(!g)return;const n=parseInt(val);g.overrideReps=(!val||isNaN(n))?null:n;}
+function clearOverride(id){const g=groups.find(g=>g.id===id);if(g){g.overrideReps=null;renderGroups();}}
+function setManual(id){const g=groups.find(g=>g.id===id);if(!g||g.overrideReps!==null)return;g.overrideReps=g._lastAutoReps||6;renderGroups();}
+function addGroup(){
+  const letter=String.fromCharCode(65+groups.length);
+  let fp=''; if(groups.length>0){const ps=parsePace(groups[groups.length-1].slowPace);if(ps!==null)fp=secsToPaceStr(ps+1);}
+  groups.push({id:nextId,name:`Group ${letter}`,fastPace:fp,slowPace:'',anchorReps:null,overrideReps:null,color:COLORS[nextId%COLORS.length]});
+  nextId++; renderGroups();
 }
-function updOverride(id, val) {
-  const g = groups.find(g=>g.id===id);
-  if (!g) return;
-  const n = parseInt(val);
-  g.overrideReps = (!val||isNaN(n)) ? null : n;
+function removeGroup(id){if(groups.length<=1)return;groups=groups.filter(g=>g.id!==id);renderGroups();}
+
+// ─────────────────────────────────────────
+//  Multi-set pace groups (mirror of above)
+// ─────────────────────────────────────────
+const msDefaultGroups = [
+  {name:'Group A',fastPace:'6:00',slowPace:'7:59'},
+  {name:'Group B',fastPace:'8:00',slowPace:'9:59'},
+  {name:'Group C',fastPace:'10:00',slowPace:'11:59'},
+  {name:'Group D',fastPace:'12:00',slowPace:''},
+];
+let msGroups = msDefaultGroups.map((g,i)=>({...g,id:i,color:COLORS[i]}));
+let msNextGroupId = msGroups.length;
+
+function msCascade(idx){
+  const next=msGroups[idx+1]; if(!next){renderMsGroups();return;}
+  const ps=parsePace(msGroups[idx].slowPace); if(ps!==null) next.fastPace=secsToPaceStr(ps+1);
+  renderMsGroups();
 }
-function clearOverride(id) {
-  const g = groups.find(g=>g.id===id);
-  if (g) { g.overrideReps=null; renderGroups(); }
+
+function renderMsGroups(){
+  const c=document.getElementById('msPaceGroups'); c.innerHTML='';
+  msGroups.forEach((g,idx)=>{
+    const isAnchor=idx===0;
+    const row=document.createElement('div'); row.className='pace-row'+(isAnchor?' anchor':'');
+    row.innerHTML=`
+      <div class="pc namecell"><span class="cdot" style="background:${g.color}"></span><div class="inner">
+        <label>Group Name</label><input type="text" value="${g.name}" oninput="msUpdG(${g.id},'name',this.value)">
+        ${isAnchor?'<span class="anchor-badge">Anchor</span>':''}
+      </div></div>
+      <div class="pc"><label>Fastest Pace (/mi)</label>
+        <input type="text" value="${g.fastPace}" oninput="msUpdG(${g.id},'fastPace',this.value)" placeholder="6:00"
+          ${idx>0?'readonly style="color:var(--muted);cursor:default"':''}>
+      </div>
+      <div class="pc"><label>Slowest Pace (/mi)</label>
+        <input type="text" value="${g.slowPace}" oninput="msUpdG(${g.id},'slowPace',this.value)" onblur="msCascade(${idx})" placeholder="open-ended">
+      </div>
+      <button class="remove-btn" onclick="removeMsGroup(${g.id})" ${msGroups.length<=1?'disabled':''}>✕</button>`;
+    c.appendChild(row);
+  });
 }
-function setManual(id) {
-  const g = groups.find(g=>g.id===id);
-  if (!g||g.overrideReps!==null) return;
-  g.overrideReps = g._lastAutoReps||6;
-  renderGroups();
+function msUpdG(id,key,val){const g=msGroups.find(g=>g.id===id);if(g)g[key]=val;}
+function addMsGroup(){
+  const letter=String.fromCharCode(65+msGroups.length);
+  let fp=''; if(msGroups.length>0){const ps=parsePace(msGroups[msGroups.length-1].slowPace);if(ps!==null)fp=secsToPaceStr(ps+1);}
+  msGroups.push({id:msNextGroupId,name:`Group ${letter}`,fastPace:fp,slowPace:'',color:COLORS[msNextGroupId%COLORS.length]});
+  msNextGroupId++; renderMsGroups();
 }
-function addGroup() {
-  const letter = String.fromCharCode(65+groups.length);
-  let fastPace='';
-  if (groups.length>0) {
-    const prevSlow = parsePace(groups[groups.length-1].slowPace);
-    if (prevSlow!==null) fastPace = secsToPaceStr(prevSlow+1);
+function removeMsGroup(id){if(msGroups.length<=1)return;msGroups=msGroups.filter(g=>g.id!==id);renderMsGroups();}
+
+// ─────────────────────────────────────────
+//  Multi-set: Sets
+// ─────────────────────────────────────────
+let sets = [];
+let nextSetId = 0;
+
+// Auto-suggest anchor reps for a set based on distance relative to 400m baseline
+function suggestAnchorReps(distM) {
+  // Baseline: 400m → 8 reps. Scale inversely with distance.
+  const baseline = 8 * 400;
+  return Math.max(1, Math.round(baseline / distM));
+}
+
+function distToMeters(dist, unit) {
+  if (unit==='m') return dist;
+  if (unit==='km') return dist*1000;
+  return dist*1609.34;
+}
+
+function addSet() {
+  if (sets.length >= 6) return;
+  const id = nextSetId++;
+  // Default distances that make a nice ladder feel
+  const defaultDists = [400,800,1200,800,400,1600];
+  const dist = defaultDists[sets.length] || 400;
+  sets.push({
+    id, title:'', dist, distUnit:'m',
+    recMode:'time', recMin:2, recSec:0,
+    recDist:200, recDistUnit:'m', recOffset:120,
+    anchorReps: suggestAnchorReps(dist), anchorOverride: false
+  });
+  renderSets();
+  if (sets.length >= 6) document.getElementById('addSetBtn').style.display='none';
+}
+
+function removeSet(id) {
+  sets = sets.filter(s=>s.id!==id);
+  renderSets();
+  document.getElementById('addSetBtn').style.display='';
+}
+
+function updSet(id, key, val) { const s=sets.find(s=>s.id===id); if(s) s[key]=val; }
+
+function updSetDist(id) {
+  const s=sets.find(s=>s.id===id); if(!s) return;
+  if (!s.anchorOverride) {
+    s.anchorReps = suggestAnchorReps(distToMeters(s.dist, s.distUnit));
+    renderSets();
   }
-  groups.push({id:nextId, name:`Group ${letter}`, fastPace, slowPace:'', anchorReps:null, overrideReps:null, color:COLORS[nextId%COLORS.length]});
-  nextId++;
-  renderGroups();
 }
-function removeGroup(id) {
-  if (groups.length<=1) return;
-  groups = groups.filter(g=>g.id!==id);
-  renderGroups();
+
+function updSetAnchor(id, val) {
+  const s=sets.find(s=>s.id===id); if(!s) return;
+  const n=parseInt(val); if(!isNaN(n)&&n>=1) { s.anchorReps=n; s.anchorOverride=true; }
+}
+
+function resetSetAnchor(id) {
+  const s=sets.find(s=>s.id===id); if(!s) return;
+  s.anchorOverride=false;
+  s.anchorReps=suggestAnchorReps(distToMeters(s.dist,s.distUnit));
+  renderSets();
+}
+
+function setSetRecMode(id, mode) {
+  const s=sets.find(s=>s.id===id); if(!s) return;
+  s.recMode=mode; renderSets();
+}
+
+function changeSetOffset(id, delta) {
+  const s=sets.find(s=>s.id===id); if(!s) return;
+  s.recOffset=Math.max(0,Math.min(480,s.recOffset+delta));
+  const el=document.getElementById(`setOffsetDisplay-${id}`);
+  if(el) el.textContent=offsetLabel(s.recOffset);
+}
+
+function renderSets() {
+  const c=document.getElementById('setsContainer'); c.innerHTML='';
+  sets.forEach((s,si)=>{
+    const card=document.createElement('div'); card.className='set-card';
+    const autoNote = s.anchorOverride ? '' : '(auto)';
+    card.innerHTML=`
+      <div class="set-card-header">
+        <span class="set-label">Set ${si+1}</span>
+        <input class="set-title-input" type="text" value="${s.title}" placeholder="e.g. 800m repeats"
+          oninput="updSet(${s.id},'title',this.value)">
+        <button class="set-remove-btn" onclick="removeSet(${s.id})" title="Remove set">✕</button>
+      </div>
+      <div class="set-body">
+        <div class="set-field">
+          <label>Rep Distance</label>
+          <div class="set-field-row">
+            <input class="set-input" type="number" value="${s.dist}" min="50" step="50" style="width:75px"
+              oninput="updSet(${s.id},'dist',parseFloat(this.value)||400);updSetDist(${s.id})">
+            <select class="set-select" onchange="updSet(${s.id},'distUnit',this.value);updSetDist(${s.id})">
+              <option value="m" ${s.distUnit==='m'?'selected':''}>m</option>
+              <option value="mi" ${s.distUnit==='mi'?'selected':''}>mi</option>
+              <option value="km" ${s.distUnit==='km'?'selected':''}>km</option>
+            </select>
+          </div>
+        </div>
+        <div class="set-field">
+          <label>Recovery</label>
+          <div class="set-rec-toggle">
+            <button class="set-rec-btn ${s.recMode==='time'?'active':''}" onclick="setSetRecMode(${s.id},'time')">⏱ Time</button>
+            <button class="set-rec-btn ${s.recMode==='dist'?'active':''}" onclick="setSetRecMode(${s.id},'dist')">📏 Dist</button>
+          </div>
+          ${s.recMode==='time'?`
+            <div class="set-field-row">
+              <input class="set-input" type="number" value="${s.recMin}" min="0" max="15" style="width:48px"
+                oninput="updSet(${s.id},'recMin',parseInt(this.value)||0)">
+              <span class="set-unit">:</span>
+              <input class="set-input" type="number" value="${s.recSec}" min="0" max="59" style="width:42px"
+                oninput="updSet(${s.id},'recSec',parseInt(this.value)||0)">
+              <span class="set-unit">m:s</span>
+            </div>
+          `:`
+            <div class="set-field-row">
+              <input class="set-input" type="number" value="${s.recDist}" min="10" step="10" style="width:65px"
+                oninput="updSet(${s.id},'recDist',parseFloat(this.value)||200)">
+              <select class="set-select" onchange="updSet(${s.id},'recDistUnit',this.value)">
+                <option value="m" ${s.recDistUnit==='m'?'selected':''}>m</option>
+                <option value="mi" ${s.recDistUnit==='mi'?'selected':''}>mi</option>
+                <option value="km" ${s.recDistUnit==='km'?'selected':''}>km</option>
+              </select>
+            </div>
+            <div class="pace-offset-row" style="margin-top:0.4rem">
+              <div class="pace-offset-ctrl">
+                <button class="offset-btn" onclick="changeSetOffset(${s.id},-30)">−</button>
+                <span class="offset-display" id="setOffsetDisplay-${s.id}">${offsetLabel(s.recOffset)}</span>
+                <button class="offset-btn" onclick="changeSetOffset(${s.id},+30)">+</button>
+              </div>
+            </div>
+          `}
+        </div>
+        <div class="set-anchor-row">
+          <span class="set-anchor-label">⚓ Anchor Reps</span>
+          <input class="set-anchor-val" type="number" value="${s.anchorReps}" min="1" max="40"
+            oninput="updSetAnchor(${s.id},this.value)">
+          <span class="set-anchor-note">${autoNote}</span>
+          ${s.anchorOverride?`<span class="set-anchor-auto-tag" onclick="resetSetAnchor(${s.id})">↺ reset to auto</span>`:''}
+        </div>
+      </div>`;
+    c.appendChild(card);
+  });
 }
 
 // ─────────────────────────────────────────
-//  Calculator
+//  Single-set calculate
 // ─────────────────────────────────────────
-function calculate() {
-  const repDist  = parseFloat(document.getElementById('repDist').value)||400;
-  const distUnit = document.getElementById('distUnit').value;
-
-  let fixedRecSec=null, recDistVal=null, recDistUnit=null;
-  if (recMode==='time') {
-    fixedRecSec = (parseInt(document.getElementById('recMin').value)||0)*60
-                + (parseInt(document.getElementById('recSec').value)||0);
-  } else {
-    recDistVal  = parseFloat(document.getElementById('recDist').value)||200;
-    recDistUnit = document.getElementById('recDistUnit').value;
-  }
-
-  const anchor = groups[0];
-  const anchorReps = anchor.anchorReps||8;
-  const aFast = parsePace(anchor.fastPace), aSlow = parsePace(anchor.slowPace);
-  let anchorPace = (aFast&&aSlow) ? (aFast+aSlow)/2 : (aFast||aSlow||390);
-
-  const anchorRepSec = repSec(anchorPace, repDist, distUnit);
-  const anchorRecSec = fixedRecSec!==null ? fixedRecSec : repSec(anchorPace+recPaceOffsetSec, recDistVal, recDistUnit);
-  const anchorTotalSec = anchorReps*anchorRepSec + (anchorReps-1)*anchorRecSec;
+function calcGroupResults(grps, repDist, distUnit, fixedRecSec, recDistVal, recDistUnit, paceOffset, anchorReps) {
+  const anchor=grps[0];
+  const aFast=parsePace(anchor.fastPace),aSlow=parsePace(anchor.slowPace);
+  let anchorPace=(aFast&&aSlow)?(aFast+aSlow)/2:(aFast||aSlow||390);
+  const anchorRepSec=repSec(anchorPace,repDist,distUnit);
+  const anchorRecSec=fixedRecSec!==null?fixedRecSec:repSec(anchorPace+paceOffset,recDistVal,recDistUnit);
+  const anchorTotalSec=anchorReps*anchorRepSec+anchorReps*anchorRecSec;
 
   const results=[];
-  groups.forEach((g,idx) => {
-    const gFast=parsePace(g.fastPace), gSlow=parsePace(g.slowPace);
+  grps.forEach((g,idx)=>{
+    const gFast=parsePace(g.fastPace),gSlow=parsePace(g.slowPace);
     let avgPace;
-    if (gFast&&gSlow) avgPace=(gFast+gSlow)/2;
-    else if (gFast&&!gSlow) avgPace=gFast*1.08;
-    else if (!gFast&&gSlow) avgPace=gSlow*0.95;
-    else { results.push({...g,error:true,idx}); return; }
-
-    const gRepSec = repSec(avgPace, repDist, distUnit);
-    const gRecSec = fixedRecSec!==null ? fixedRecSec : repSec(avgPace+recPaceOffsetSec, recDistVal, recDistUnit);
-
-    let autoReps, reps, isOverridden=false;
-    if (idx===0) { reps=anchorReps; autoReps=anchorReps; }
-    else {
-      autoReps = Math.max(1, Math.floor((anchorTotalSec+gRecSec)/(gRepSec+gRecSec)));
-      if (g.overrideReps!==null) { reps=g.overrideReps; isOverridden=true; }
+    if(gFast&&gSlow) avgPace=(gFast+gSlow)/2;
+    else if(gFast&&!gSlow) avgPace=gFast*1.08;
+    else if(!gFast&&gSlow) avgPace=gSlow*0.95;
+    else {results.push({...g,error:true,idx});return;}
+    const gRepSec=repSec(avgPace,repDist,distUnit);
+    const gRecSec=fixedRecSec!==null?fixedRecSec:repSec(avgPace+paceOffset,recDistVal,recDistUnit);
+    let autoReps,reps,isOverridden=false;
+    if(idx===0){reps=anchorReps;autoReps=anchorReps;}
+    else{
+      autoReps=Math.min(anchorReps,Math.max(1,Math.floor(anchorTotalSec/(gRepSec+gRecSec))));
+      if(g.overrideReps!=null){reps=Math.min(anchorReps,g.overrideReps);isOverridden=true;}
       else reps=autoReps;
     }
-
-    const totalSec = reps*gRepSec+(reps-1)*gRecSec;
-    const diff = totalSec-anchorTotalSec;
-    g._lastAutoReps = autoReps;
+    const totalSec=reps*gRepSec+reps*gRecSec;
+    const diff=totalSec-anchorTotalSec;
+    g._lastAutoReps=autoReps;
     results.push({...g,avgPace,gFast,gSlow,gRepSec,gRecSec,reps,autoReps,totalSec,diff,idx,isOverridden});
   });
+  return {results,anchorTotalSec};
+}
 
-  const valid = results.filter(r=>!r.error);
-  if (!valid.length) return;
+function calculate() {
+  const repDist=parseFloat(document.getElementById('repDist').value)||400;
+  const distUnit=document.getElementById('distUnit').value;
+  let fixedRecSec=null,recDistVal=null,recDistUnit=null;
+  if(recMode==='time'){
+    fixedRecSec=(parseInt(document.getElementById('recMin').value)||0)*60+(parseInt(document.getElementById('recSec').value)||0);
+  } else {
+    recDistVal=parseFloat(document.getElementById('recDist').value)||200;
+    recDistUnit=document.getElementById('recDistUnit').value;
+  }
+  const anchorReps=groups[0].anchorReps||8;
+  const {results,anchorTotalSec}=calcGroupResults(groups,repDist,distUnit,fixedRecSec,recDistVal,recDistUnit,recPaceOffsetSec,anchorReps);
+  const valid=results.filter(r=>!r.error);
+  if(!valid.length) return;
 
-  const recLabel = fixedRecSec!==null ? fmtTime(fixedRecSec) : `${recDistVal}${recDistUnit} jog`;
-  document.getElementById('summaryBar').innerHTML = `
+  const recLabel=fixedRecSec!==null?fmtTime(fixedRecSec):`${recDistVal}${recDistUnit} jog`;
+  document.getElementById('summaryBar').innerHTML=`
     <div class="si"><div class="sl">Rep Distance</div><div class="sv">${repDist}${distUnit}</div></div>
     <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
     <div class="si"><div class="sl">Anchor Reps</div><div class="sv">${anchorReps} × ${groups[0].name}</div></div>
     <div class="si"><div class="sl">Anchor Time</div><div class="sv">${fmtTime(anchorTotalSec)}</div></div>
-    <div class="si"><div class="sl">Rep Range</div><div class="sv">${Math.min(...valid.map(r=>r.reps))}–${Math.max(...valid.map(r=>r.reps))}</div></div>
-  `;
+    <div class="si"><div class="sl">Rep Range</div><div class="sv">${Math.min(...valid.map(r=>r.reps))}–${Math.max(...valid.map(r=>r.reps))}</div></div>`;
 
-  const cards = document.getElementById('resultCards');
-  cards.innerHTML='';
-  valid.forEach(r => {
-    const paceLabel = r.gFast&&r.gSlow ? `${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`
-      : r.gFast ? `${fmtTime(r.gFast)}+/mi` : `${fmtTime(r.avgPace)}/mi`;
-    const recSub = fixedRecSec===null
-      ? `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace+recPaceOffsetSec)}/mi</div>`
-      : `<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
+  const cards=document.getElementById('resultCards'); cards.innerHTML='';
+  valid.forEach(r=>{
+    const paceLabel=r.gFast&&r.gSlow?`${fmtTime(r.gFast)} – ${fmtTime(r.gSlow)}/mi`:r.gFast?`${fmtTime(r.gFast)}+/mi`:`${fmtTime(r.avgPace)}/mi`;
+    const recSub=fixedRecSec===null
+      ?`<div class="sub">Interval ${fmtTime(r.avgPace)}/mi · Recovery ${fmtTime(r.avgPace+recPaceOffsetSec)}/mi</div>`
+      :`<div class="sub">Interval ${fmtTime(r.avgPace)}/mi</div>`;
     let deltaHtml='';
-    if (r.idx!==0) {
-      const diffAbs=Math.abs(r.diff);
-      if (diffAbs<15) deltaHtml=`<div class="delta-row even">≈ same finish time as anchor</div>`;
-      else {
-        const sign=r.diff>0?'+':'−', cls=r.diff>0?'over':'under', lbl=r.diff>0?'after anchor':'before anchor';
-        deltaHtml=`<div class="delta-row ${cls}">${sign}${fmtTime(diffAbs)} ${lbl}</div>`;
-      }
+    if(r.idx!==0){
+      const da=Math.abs(r.diff);
+      if(da<15) deltaHtml=`<div class="delta-row even">≈ same finish time as anchor</div>`;
+      else{const sign=r.diff>0?'+':'−',cls=r.diff>0?'over':'under',lbl=r.diff>0?'after anchor':'before anchor';deltaHtml=`<div class="delta-row ${cls}">${sign}${fmtTime(da)} ${lbl}</div>`;}
     }
-    const openNote = r.gFast&&!r.gSlow ? `<div class="warn">Open-ended group — avg estimated at ${fmtTime(r.avgPace)}/mi</div>` : '';
-    const overrideBadge = r.isOverridden
-      ? ` <span style="font-size:0.6rem;background:var(--green);color:#000;padding:2px 5px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">OVERRIDE</span>` : '';
-    const card=document.createElement('div');
-    card.className='result-card'+(r.isOverridden?' overridden-card':'');
+    const openNote=r.gFast&&!r.gSlow?`<div class="warn">Open-ended group — avg estimated at ${fmtTime(r.avgPace)}/mi</div>`:'';
+    const overrideBadge=r.isOverridden?` <span style="font-size:0.6rem;background:var(--green);color:#000;padding:2px 5px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">OVERRIDE</span>`:'';
+    const card=document.createElement('div'); card.className='result-card'+(r.isOverridden?' overridden-card':'');
     card.innerHTML=`
-      <div class="rct">
-        <div class="dot" style="background:${r.color}"></div>
-        <div class="gname">${r.name}${overrideBadge}</div>
-        <div class="plabel">${paceLabel}</div>
-      </div>
+      <div class="rct"><div class="dot" style="background:${r.color}"></div><div class="gname">${r.name}${overrideBadge}</div><div class="plabel">${paceLabel}</div></div>
       <div class="rcb">
-        <div class="stat">
-          <div class="sl">Reps${r.isOverridden?'':(r.idx>0?' (auto)':'')}</div>
+        <div class="stat"><div class="sl">Reps${r.isOverridden?'':(r.idx>0?' (auto)':'')}</div>
           <div class="sv big${r.isOverridden?' overridden':''}">${r.reps}</div>
           ${r.isOverridden?`<div class="sub">auto would be ${r.autoReps}</div>`:''}
         </div>
-        <div class="stat cycle-stat">
-          <div class="sl">Cycle (rep + recovery)</div>
+        <div class="stat cycle-stat"><div class="sl">Cycle (rep + recovery)</div>
           <div class="cycle-row">
-            <span class="cv">${fmtTime(r.gRepSec)}</span>
-            <span class="cplus">+</span>
-            <span class="cv">${fmtTime(r.gRecSec)}</span>
-            <span class="cplus">=</span>
+            <span class="cv">${fmtTime(r.gRepSec)}</span><span class="cplus">+</span>
+            <span class="cv">${fmtTime(r.gRecSec)}</span><span class="cplus">=</span>
             <span class="cv ceq">${fmtTime(r.gRepSec+r.gRecSec)}</span>
-          </div>
-          ${recSub}
+          </div>${recSub}
         </div>
         <div class="stat" style="grid-column:span 2;border-top:1px solid var(--border);padding-top:0.6rem;margin-top:0.1rem;">
-          <div class="sl">Total Workout Time</div>
-          <div class="sv grn">${fmtTime(r.totalSec)}</div>
+          <div class="sl">Total Workout Time</div><div class="sv grn">${fmtTime(r.totalSec)}</div>
         </div>
-      </div>
-      ${deltaHtml}${openNote}
-    `;
+      </div>${deltaHtml}${openNote}`;
     cards.appendChild(card);
   });
 
-  const el=document.getElementById('results');
-  el.style.display='block';
+  const el=document.getElementById('results'); el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─────────────────────────────────────────
+//  Multi-set calculate
+// ─────────────────────────────────────────
+function calculateMulti() {
+  if (!sets.length) return;
+
+  // ── Step 1: initial per-set calculation ──
+  // Build a mutable reps table: adjustedReps[setIdx][groupId] = reps
+  const setMeta = sets.map(s => {
+    const fixedRecSec = s.recMode==='time' ? s.recMin*60+s.recSec : null;
+    const recDistVal  = s.recMode==='dist' ? s.recDist : null;
+    const recDistUnit = s.recMode==='dist' ? s.recDistUnit : null;
+    const {results, anchorTotalSec} = calcGroupResults(
+      msGroups, s.dist, s.distUnit, fixedRecSec, recDistVal, recDistUnit, s.recOffset, s.anchorReps
+    );
+    return {set:s, results, anchorTotalSec, fixedRecSec, recDistVal, recDistUnit};
+  });
+
+  // ── Step 2: build mutable rep counts (non-anchor groups only) ──
+  // repCounts[si][gid] = current reps for that group in that set
+  const repCounts = setMeta.map(({results, set:s}) => {
+    const m = {};
+    results.filter(r=>!r.error).forEach(r => { m[r.id] = r.reps; });
+    return m;
+  });
+
+  // Helper: compute a group's total time given current repCounts
+  function groupTotalTime(gid) {
+    let total = 0;
+    setMeta.forEach(({results}, si) => {
+      const r = results.find(r=>r.id===gid);
+      if (!r||r.error) return;
+      const reps = repCounts[si][gid];
+      total += reps*r.gRepSec + reps*r.gRecSec;
+    });
+    return total;
+  }
+
+  // Anchor grand total (anchor group is always idx 0, never adjusted)
+  const anchorId = msGroups[0].id;
+  const anchorGrandTotal = groupTotalTime(anchorId);
+
+  // ── Step 3: greedy fill — add reps to groups that are >90s under anchor ──
+  msGroups.forEach((g, gi) => {
+    if (gi === 0) return; // skip anchor
+    const r0 = setMeta[0].results.find(r=>r.id===g.id);
+    if (!r0 || r0.error) return;
+
+    for (let iter = 0; iter < 20; iter++) { // safety cap
+      const gTotal = groupTotalTime(g.id);
+      const deficit = anchorGrandTotal - gTotal; // positive = group finishes earlier
+      if (deficit <= 90) break; // within window, done
+
+      // Find the set where adding one rep adds the least time
+      // while still keeping reps <= that set's anchorReps
+      let bestSi = -1, bestCost = Infinity;
+      setMeta.forEach(({results, set:s}, si) => {
+        const r = results.find(r=>r.id===g.id);
+        if (!r||r.error) return;
+        const curReps = repCounts[si][g.id];
+        if (curReps >= s.anchorReps) return; // can't exceed anchor for this set
+        const cost = r.gRepSec + r.gRecSec; // one more rep + recovery
+        if (cost < bestCost) { bestCost = cost; bestSi = si; }
+      });
+
+      if (bestSi === -1) break; // no sets can take more reps
+      repCounts[bestSi][g.id]++;
+    }
+  });
+
+  // ── Step 4: rebuild results with adjusted reps ──
+  const adjustedSetResults = setMeta.map(({set:s, results, anchorTotalSec, fixedRecSec, recDistVal, recDistUnit}, si) => {
+    const adjusted = results.map(r => {
+      if (r.error) return r;
+      const reps = repCounts[si][r.id];
+      const totalSec = reps*r.gRepSec + reps*r.gRecSec;
+      const wasAdjusted = reps !== r.reps;
+      return {...r, reps, totalSec, wasAdjusted, origReps: r.reps};
+    });
+    return {set:s, results:adjusted, anchorTotalSec};
+  });
+
+  // ── Step 5: render per-set tables ──
+  const container = document.getElementById('msSetResults');
+  container.innerHTML = '';
+
+  adjustedSetResults.forEach(({set:s, results, anchorTotalSec}, si) => {
+    const valid = results.filter(r=>!r.error);
+    const recLabel = s.recMode==='time' ? fmtTime(s.recMin*60+s.recSec) : `${s.recDist}${s.recDistUnit} jog`;
+    const setName = s.title || `Set ${si+1}`;
+
+    const block = document.createElement('div'); block.className='ms-set-block';
+    block.innerHTML=`
+      <div class="ms-set-title">${setName}
+        <span class="ms-set-meta">${s.dist}${s.distUnit} · recovery ${recLabel} · anchor ${s.anchorReps} rep${s.anchorReps!==1?'s':''} · budget ${fmtTime(anchorTotalSec)}</span>
+      </div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr>
+            <th>Group</th><th>Pace Range</th><th>Reps</th><th>Rep Time</th><th>Cycle</th><th>Set Time</th>
+          </tr></thead>
+          <tbody>${valid.map(r=>{
+            const paceLabel=r.gFast&&r.gSlow?`${fmtTime(r.gFast)}–${fmtTime(r.gSlow)}/mi`:r.gFast?`${fmtTime(r.gFast)}+/mi`:`${fmtTime(r.avgPace)}/mi`;
+            const repsClass=r.isOverridden?'td-reps override':'td-reps';
+            const adjNote=r.wasAdjusted?` <span style="font-size:0.65rem;color:var(--green)" title="bumped up to close total time gap">+</span>`:'';
+            const autoNote=r.isOverridden?` <span style="font-size:0.65rem;color:var(--muted)">(manual)</span>`:'';
+            return `<tr${r.idx===0?' class="ms-anchor-row"':''}>
+              <td><div class="td-group"><span class="td-dot" style="background:${r.color}"></span>${r.name}</div></td>
+              <td style="font-size:0.85rem;color:var(--muted)">${paceLabel}</td>
+              <td class="${repsClass}">${r.reps}${adjNote}${autoNote}</td>
+              <td>${fmtTime(r.gRepSec)}</td>
+              <td class="td-cycle">${fmtTime(r.gRepSec+r.gRecSec)}</td>
+              <td class="td-time">${fmtTime(r.totalSec)}</td>
+            </tr>`;
+          }).join('')}</tbody>
+        </table>
+      </div>`;
+    container.appendChild(block);
+  });
+
+  // ── Step 6: grand total ──
+  const tbody = document.getElementById('msGrandBody');
+  tbody.innerHTML='';
+
+  msGroups.forEach((g, gi) => {
+    const gFast=parsePace(g.fastPace), gSlow=parsePace(g.slowPace);
+    let totalReps=0, totalTime=0, anyResult=false;
+    adjustedSetResults.forEach(({results})=>{
+      const r=results.find(r=>r.id===g.id);
+      if(r&&!r.error){totalReps+=r.reps; totalTime+=r.totalSec; anyResult=true;}
+    });
+    if(!anyResult) return;
+
+    const paceLabel=gFast&&gSlow?`${fmtTime(gFast)}–${fmtTime(gSlow)}/mi`:gFast?`${fmtTime(gFast)}+/mi`:'—';
+    const isAnchor=gi===0;
+    const diff = totalTime - anchorGrandTotal;
+    const diffAbs = Math.abs(diff);
+    let deltaHtml='';
+    if(!isAnchor){
+      if(diffAbs<=90) deltaHtml=`<span style="font-size:0.75rem;color:var(--green);margin-left:0.5rem;">✓ within 90s</span>`;
+      else {
+        const sign=diff>0?'+':'−';
+        deltaHtml=`<span style="font-size:0.75rem;color:var(--red);margin-left:0.5rem;">⚠ ${sign}${fmtTime(diffAbs)} — can't close gap further</span>`;
+      }
+    }
+    const tr=document.createElement('tr');
+    if(isAnchor) tr.style.background='rgba(240,165,0,0.05)';
+    tr.innerHTML=`
+      <td><div class="td-group"><span class="td-dot" style="background:${g.color}"></span>${g.name}${isAnchor?' <span style="font-size:0.58rem;background:var(--accent);color:#000;padding:1px 5px;border-radius:3px;font-family:\'Barlow Condensed\',sans-serif;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">ANCHOR</span>':''}</div></td>
+      <td style="font-size:0.85rem;color:var(--muted)">${paceLabel}</td>
+      <td class="td-reps-sum">${totalReps} total</td>
+      <td class="td-total">${fmtTime(totalTime)}${deltaHtml}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  const el=document.getElementById('msResults'); el.style.display='block';
   el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -909,101 +1208,57 @@ function calculate() {
 //  Optimizer
 // ─────────────────────────────────────────
 function runOptimizer() {
-  const anchorPace = parsePace(document.getElementById('optAnchorPace').value);
-  const anchorReps = parseInt(document.getElementById('optAnchorReps').value)||8;
-  const repDist    = parseFloat(document.getElementById('optRepDist').value)||800;
-  const distUnit   = document.getElementById('optDistUnit').value;
-  const minReps    = parseInt(document.getElementById('optMinReps').value)||4;
-  const maxReps    = parseInt(document.getElementById('optMaxReps').value)||10;
+  const anchorPace=parsePace(document.getElementById('optAnchorPace').value);
+  const anchorReps=parseInt(document.getElementById('optAnchorReps').value)||8;
+  const repDist=parseFloat(document.getElementById('optRepDist').value)||800;
+  const distUnit=document.getElementById('optDistUnit').value;
+  const minReps=parseInt(document.getElementById('optMinReps').value)||4;
+  const maxReps=parseInt(document.getElementById('optMaxReps').value)||10;
+  if(!anchorPace) return;
 
-  if (!anchorPace) return;
-
-  // Anchor's recovery (fixed or distance-based using anchor's pace)
-  let anchorFixedRec=null, optRecDistVal=null, optRecDistUnit=null;
-  if (optRecMode==='time') {
-    anchorFixedRec = (parseInt(document.getElementById('optRecMin').value)||0)*60
-                   + (parseInt(document.getElementById('optRecSec').value)||0);
+  let anchorFixedRec=null,optRecDistVal=null,optRecDistUnit=null;
+  if(optRecMode==='time'){
+    anchorFixedRec=(parseInt(document.getElementById('optRecMin').value)||0)*60+(parseInt(document.getElementById('optRecSec').value)||0);
   } else {
-    optRecDistVal  = parseFloat(document.getElementById('optRecDist').value)||200;
-    optRecDistUnit = document.getElementById('optRecDistUnit').value;
+    optRecDistVal=parseFloat(document.getElementById('optRecDist').value)||200;
+    optRecDistUnit=document.getElementById('optRecDistUnit').value;
   }
-
-  const getRecSec = (pace) => anchorFixedRec !== null
-    ? anchorFixedRec
-    : repSec(pace + optRecPaceOffsetSec, optRecDistVal, optRecDistUnit);
-
-  // Anchor total time budget
-  const anchorRepTime = repSec(anchorPace, repDist, distUnit);
-  const anchorRecTime = getRecSec(anchorPace);
-  const budget = anchorReps * anchorRepTime + (anchorReps-1) * anchorRecTime;
-
-  // Context bar
-  const recLabel = anchorFixedRec!==null ? fmtTime(anchorFixedRec) : `${optRecDistVal}${optRecDistUnit} jog`;
-  document.getElementById('optContext').innerHTML = `
+  const getRecSec=(pace)=>anchorFixedRec!==null?anchorFixedRec:repSec(pace+optRecPaceOffsetSec,optRecDistVal,optRecDistUnit);
+  const anchorRepTime=repSec(anchorPace,repDist,distUnit);
+  const anchorRecTime=getRecSec(anchorPace);
+  const budget=anchorReps*anchorRepTime+(anchorReps-1)*anchorRecTime;
+  const recLabel=anchorFixedRec!==null?fmtTime(anchorFixedRec):`${optRecDistVal}${optRecDistUnit} jog`;
+  document.getElementById('optContext').innerHTML=`
     <div class="si"><div class="sl">Anchor Pace</div><div class="sv">${fmtTime(anchorPace)}/mi</div></div>
     <div class="si"><div class="sl">Anchor Reps</div><div class="sv">${anchorReps} × ${repDist}${distUnit}</div></div>
     <div class="si"><div class="sl">Recovery</div><div class="sv">${recLabel}</div></div>
-    <div class="si"><div class="sl">Time Budget</div><div class="sv">${fmtTime(budget)}</div></div>
-  `;
-
-  // For each rep count, find max pace that fits within budget.
-  // Budget = reps * repTime + (reps-1) * recTime
-  // If fixed recovery:
-  //   budget = reps * repTime + (reps-1)*fixedRec
-  //   repTime = (budget - (reps-1)*fixedRec) / reps
-  //   pace = repTime / distMiles
-  // If distance recovery (recTime depends on pace):
-  //   recTime = (pace + offset) * recDistMi
-  //   budget = reps*(pace*repDistMi) + (reps-1)*(pace+offset)*recDistMi
-  //   budget = pace*(reps*repDistMi + (reps-1)*recDistMi) + (reps-1)*offset*recDistMi
-  //   pace = (budget - (reps-1)*offset*recDistMi) / (reps*repDistMi + (reps-1)*recDistMi)
-
-  const repDistMi = toMiles(repDist, distUnit);
-  const recDistMi = anchorFixedRec===null ? toMiles(optRecDistVal, optRecDistUnit) : 0;
-
-  const tbody = document.getElementById('optTableBody');
-  tbody.innerHTML='';
-
-  for (let reps = minReps; reps <= maxReps; reps++) {
+    <div class="si"><div class="sl">Time Budget</div><div class="sv">${fmtTime(budget)}</div></div>`;
+  const repDistMi=toMiles(repDist,distUnit);
+  const recDistMi=anchorFixedRec===null?toMiles(optRecDistVal,optRecDistUnit):0;
+  const tbody=document.getElementById('optTableBody'); tbody.innerHTML='';
+  for(let reps=minReps;reps<=maxReps;reps++){
     let maxPaceSec;
-    if (anchorFixedRec !== null) {
-      const maxRepTimeSec = (budget - (reps-1)*anchorFixedRec) / reps;
-      maxPaceSec = maxRepTimeSec / repDistMi;
-    } else {
-      const numerator = budget - (reps-1)*optRecPaceOffsetSec*recDistMi;
-      const denominator = reps*repDistMi + (reps-1)*recDistMi;
-      maxPaceSec = numerator / denominator;
-    }
-
-    if (maxPaceSec <= 0) continue;
-
-    const isAnchorRow = reps === anchorReps;
-    const maxRepTimeSec = maxPaceSec * repDistMi;
-    const maxRecTimeSec = getRecSec(maxPaceSec);
-    const totalSec = reps*maxRepTimeSec + (reps-1)*maxRecTimeSec;
-    const cycleSec = maxRepTimeSec + maxRecTimeSec;
-
-    // Suggested range: ±30sec around max pace (faster end is max - ~1min, slower end is max pace itself)
-    const rangeFastSec = Math.max(60, maxPaceSec - 90);
-    const rangeSlowSec = maxPaceSec;
-    const rangeStr = `${fmtTime(rangeFastSec)} – ${fmtTime(rangeSlowSec)}/mi`;
-
-    const tr = document.createElement('tr');
-    if (isAnchorRow) tr.className = 'anchor-row';
-    tr.innerHTML = `
+    if(anchorFixedRec!==null){maxPaceSec=(budget/reps-anchorFixedRec)/repDistMi;}
+    else{maxPaceSec=(budget/reps-optRecPaceOffsetSec*recDistMi)/(repDistMi+recDistMi);}
+    if(maxPaceSec<=0) continue;
+    const isAnchorRow=reps===anchorReps;
+    const maxRepTimeSec=maxPaceSec*repDistMi;
+    const maxRecTimeSec=getRecSec(maxPaceSec);
+    const totalSec=reps*maxRepTimeSec+reps*maxRecTimeSec;
+    const cycleSec=maxRepTimeSec+maxRecTimeSec;
+    const rangeFastSec=Math.max(60,maxPaceSec-90);
+    const tr=document.createElement('tr'); if(isAnchorRow) tr.className='anchor-row';
+    tr.innerHTML=`
       <td class="reps-cell">${reps}${isAnchorRow?' <span style="font-size:0.65rem;background:var(--accent);color:#000;padding:1px 5px;border-radius:3px;font-weight:800;letter-spacing:0.06em;vertical-align:middle;">ANCHOR</span>':''}</td>
       <td class="pace-cell">${fmtTime(maxPaceSec)}/mi</td>
-      <td class="pace-range-cell">${rangeStr}</td>
+      <td>${fmtTime(rangeFastSec)} – ${fmtTime(maxPaceSec)}/mi</td>
       <td>${fmtTime(maxRepTimeSec)}</td>
       <td class="cycle-cell">${fmtTime(cycleSec)}</td>
-      <td>${fmtTime(reps * maxRepTimeSec)}</td>
-      <td class="time-cell">${fmtTime(totalSec)}</td>
-    `;
+      <td>${fmtTime(reps*maxRepTimeSec)}</td>
+      <td class="time-cell">${fmtTime(totalSec)}</td>`;
     tbody.appendChild(tr);
   }
-
-  const el=document.getElementById('optResults');
-  el.style.display='block';
+  const el=document.getElementById('optResults'); el.style.display='block';
   el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -1011,6 +1266,9 @@ function runOptimizer() {
 //  Init
 // ─────────────────────────────────────────
 renderGroups();
+renderMsGroups();
+// Pre-populate with a 3-set ladder
+addSet(); addSet(); addSet();
 </script>
 </body>
 </html>
