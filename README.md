@@ -2,7 +2,7 @@
 
 A single-page tool for running coaches to build pace-based interval workouts where every group finishes at the same time.
 
-Built for Fleet Feet training class sessions where runners are split by pace group. No install, no dependencies — just open `index.html` in any browser.
+Built for Fleet Feet training class sessions where runners are split by pace group. No install, no dependencies — just open `rep-calculator.html` in any browser.
 
 ---
 
@@ -44,9 +44,9 @@ The inverse of the calculator — useful when you know your anchor group's worko
 
 ## Usage
 
-1. Download `index.html`
+1. Download `rep-calculator.html`
 2. Open it in any browser — no server required
-3. Share the hosted version with other coaches at: `https://yourusername.github.io/rep-calculator`
+3. Share the hosted version with other coaches at: `https://rminert.github.io/rep-calculator/rep-calculator.html`
 
 ---
 
